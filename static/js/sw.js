@@ -1,6 +1,6 @@
 if ('serviceWorker' in navigator) {
     window.addEventListener('load', e => {
-        navigator.serviceWorker.register('/service-worker.js')
+        navigator.serviceWorker.register('/TrackGen/service-worker.js', {scope: '/TrackGen/'})
             .then(r => {
                 reg = r;
 
