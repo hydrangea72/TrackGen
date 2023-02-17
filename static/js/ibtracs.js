@@ -23,10 +23,10 @@ function parseIbtracs(data) {
 
             parsed.push(
                 {
-                    name:      cols[0],
-                    shape:     getIbtracsShape(cols[7]),
-                    category:  speedToCat(Math.max(wmo_wind, usa_wind)),
-                    latitude:  cols[8] + "N",
+                    name: cols[0],
+                    shape: getIbtracsShape(cols[7]),
+                    category: speedToCat(Math.max(wmo_wind, usa_wind)),
+                    latitude: cols[8] + "N",
                     longitude: cols[9] + "E"
                 }
             );

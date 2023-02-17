@@ -41,7 +41,7 @@ document.querySelector("form").addEventListener("submit", (e) => {
 		const longitude = point.querySelector("input.longitude").value +
 			point.querySelector("select.longitude").getAttribute("data-selected").replace("°", "");
 
-		let speed  = Number(point.querySelector("input.speed").value);
+		let speed = Number(point.querySelector("input.speed").value);
 		const unit = point.querySelector("select.speed").getAttribute("data-selected");
 		if (unit === "mph") {
 			speed /= 1.151;
@@ -52,14 +52,14 @@ document.querySelector("form").addEventListener("submit", (e) => {
 		const stage = point.querySelector(".stage").getAttribute("data-selected");
 
 		data.push({
-			name:      name,
-			shape:     stageToShape(stage),
-			category:  speedToCat(speed),
-			latitude:  latitude,
+			name: name,
+			shape: stageToShape(stage),
+			category: speedToCat(speed),
+			latitude: latitude,
 			longitude: longitude
 		})
 	});
-	
+
 	const accessible = document.querySelector("#accessible").checked;
 
 	createMap(data, accessible);

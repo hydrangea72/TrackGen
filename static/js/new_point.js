@@ -29,7 +29,7 @@ document.querySelectorAll("#inputs .remove").forEach(button => { handle_removal(
 document.querySelector("#new-point").addEventListener("click", () => {
 	const inputs = document.querySelector("#inputs");
 	let new_inputs = document.querySelectorAll(".point");
-	new_inputs = new_inputs[new_inputs.length-1].cloneNode(true);
+	new_inputs = new_inputs[new_inputs.length - 1].cloneNode(true);
 
 	new_inputs.querySelectorAll("div:not(:first-child) > label > input").forEach(input => {
 		input.value = "";

@@ -16,21 +16,21 @@ function parseHurdat(data) {
     const parsed = [];
     let uniqueId = "";
     lines.forEach(line => {
-       const cols = line.split(", ");
+        const cols = line.split(", ");
 
-       if (cols.length === 3) {
-           uniqueId = cols[0];
-       } else {
-           parsed.push(
-               {
-                   name:      uniqueId,
-                   shape:     getHurdatShape(cols[3]),
-                   category:  speedToCat(Number(cols[6])),
-                   latitude:  cols[4],
-                   longitude: cols[5]
-               }
-           )
-       }
+        if (cols.length === 3) {
+            uniqueId = cols[0];
+        } else {
+            parsed.push(
+                {
+                    name: uniqueId,
+                    shape: getHurdatShape(cols[3]),
+                    category: speedToCat(Number(cols[6])),
+                    latitude: cols[4],
+                    longitude: cols[5]
+                }
+            )
+        }
     });
 
     return parsed

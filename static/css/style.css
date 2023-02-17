@@ -15,7 +15,8 @@
 	box-sizing: border-box;
 }
 
-body, html {
+body,
+html {
 	font-family: 'Varela Round', sans-serif;
 	background-color: var(--background-1);
 	height: 100vh;
@@ -60,7 +61,7 @@ main {
 	transition: 300ms all;
 }
 
-#input-type button ~ button {
+#input-type button~button {
 	border-left: 1px solid var(--foreground-2);
 	border-right: none;
 }
@@ -82,7 +83,7 @@ main {
 	transition: 1s margin-left;
 }
 
-.page ~ .page {
+.page~.page {
 	margin-left: 5vw;
 }
 
@@ -92,7 +93,8 @@ main {
 	scroll-behavior: smooth;
 }
 
-#inputs .point, #headers {
+#inputs .point,
+#headers {
 	display: grid;
 	grid-template-columns: repeat(6, 1fr);
 	gap: 5px;
@@ -107,7 +109,8 @@ main {
 }
 
 
-#headers h3, #inputs div {
+#headers h3,
+#inputs div {
 	width: 100%;
 }
 
@@ -125,14 +128,18 @@ main {
 	width: 40%;
 }
 
-input, textarea {
+input,
+textarea {
 	font-family: 'Roboto Mono', monospace;
 }
 
-#inputs .name { width: 98%; }
+#inputs .name {
+	width: 98%;
+}
 
 
-#inputs input, #inputs select {
+#inputs input,
+#inputs select {
 	height: 100%;
 	font-size: 1.5vw;
 	line-height: 1.5vw;
@@ -143,7 +150,10 @@ input, textarea {
 }
 
 
-input:focus, select:focus, button:focus, textarea:focus {
+input:focus,
+select:focus,
+button:focus,
+textarea:focus {
 	box-shadow: 0 0 1px 2px var(--highlight);
 	outline: none;
 }
@@ -173,11 +183,12 @@ input:focus, select:focus, button:focus, textarea:focus {
 	background-color: #c00;
 }
 
-select, button {
+select,
+button {
 	font-family: 'Raleway', sans-serif;
 }
 
-#inputs label + select {
+#inputs label+select {
 	width: 56%;
 }
 
@@ -201,7 +212,8 @@ select, button {
 	cursor: pointer;
 }
 
-#new-point span, ion-icon+span {
+#new-point span,
+ion-icon+span {
 	vertical-align: middle;
 }
 
@@ -266,7 +278,9 @@ select, button {
 	gap: 1vh;
 }
 
-#paste-upload textarea, #paste-upload button, #file-upload {
+#paste-upload textarea,
+#paste-upload button,
+#file-upload {
 	height: 100%;
 	width: 100%;
 	display: block;
@@ -281,9 +295,13 @@ select, button {
 	border: none;
 }
 
-#file-upload label { display: block; }
+#file-upload label {
+	display: block;
+}
 
-#file-upload input { display: none; }
+#file-upload input {
+	display: none;
+}
 
 
 .separator {
@@ -294,7 +312,8 @@ select, button {
 	color: var(--foreground-2);
 }
 
-.separator::before, .separator::after {
+.separator::before,
+.separator::after {
 	content: '';
 	flex: 1;
 	border-bottom: 1px solid var(--foreground-1);
@@ -345,8 +364,13 @@ select, button {
 }
 
 @keyframes spin {
-	0% { transform: rotate(0deg); }
-	100% { transform: rotate(360deg); }
+	0% {
+		transform: rotate(0deg);
+	}
+
+	100% {
+		transform: rotate(360deg);
+	}
 }
 
 #image-container #close {
@@ -380,11 +404,11 @@ select, button {
 		word-break: normal;
 	}
 
-	#inputs .point > div {
+	#inputs .point>div {
 		margin: 5px 0;
 	}
 
-	#inputs .point label > span {
+	#inputs .point label>span {
 		display: inline-block;
 		width: 20%;
 		font-size: 12px;
@@ -392,7 +416,9 @@ select, button {
 		vertical-align: middle;
 	}
 
-	#inputs .point input, #inputs .point select, #inputs .point button {
+	#inputs .point input,
+	#inputs .point select,
+	#inputs .point button {
 		font-size: 17px;
 	}
 
@@ -404,11 +430,13 @@ select, button {
 		width: 23%;
 	}
 
-	#inputs .point .stage, #inputs .point .name {
+	#inputs .point .stage,
+	#inputs .point .name {
 		width: 79%;
 	}
 
-	#new-point, .generate {
+	#new-point,
+	.generate {
 		font-size: 23px;
 		padding: 10px 0;
 		border-radius: 7px;

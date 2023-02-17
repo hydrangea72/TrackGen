@@ -6,9 +6,9 @@ document.querySelectorAll("#input-type button").forEach(button => {
 			elem = elem.previousElementSibling;
 			index++;
 		}
-		document.querySelectorAll(".page")[0].style.marginLeft = -95 * (index-1) + "vw";
+		document.querySelectorAll(".page")[0].style.marginLeft = -95 * (index - 1) + "vw";
 
-		document.querySelectorAll("#input-type button").forEach(button => button.className="");
+		document.querySelectorAll("#input-type button").forEach(button => button.className = "");
 		button.className = "selected";
 	});
 });

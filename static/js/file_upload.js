@@ -18,7 +18,7 @@ function mapFromFile(data, type, accessible) {
 
 document.querySelector("#paste-upload").addEventListener("submit", (e) => {
 	e.preventDefault();
-	
+
 	const accessible = document.querySelector("#accessible").checked;
 
 	const data = document.querySelector("#paste-upload textarea").value;
@@ -31,7 +31,7 @@ document.querySelector("#file-input").addEventListener("change", (e) => {
 	const accessible = document.querySelector("#accessible").checked;
 	const type = document.querySelector("#file-format").getAttribute("data-selected").toLowerCase();
 
-	const fr   = new FileReader();
+	const fr = new FileReader();
 	const file = e.target.files[0];
 
 	fr.onload = evt => {
