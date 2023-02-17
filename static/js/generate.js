@@ -45,13 +45,13 @@ document.querySelector("#close").addEventListener("click", () => {
 let loaded = false;
 const BLUE_MARBLE = new Image();
 
-const MAP_URL = "/static/media/map.jpg";
+const MAP_URL = "/static/media/bg8192.png";
 caches.match(MAP_URL)
     .then(r => {
-       if (r || confirm("This website requires you to download a ~150MB image, would you like to continue?")) {
+       if (r || confirm("This website requires you to download a ~22MB image, would you like to continue?")) {
            BLUE_MARBLE.src = MAP_URL;
        } else {
-           document.querySelector("main").innerHTML = "<h1>Bye 👋</h1>";
+           document.querySelector("main").innerHTML = "<h1>Zoinks!</h1><p>It looks the image was unable to be downloaded, please try again later. If this problem persists, use a different browser/device or contact the developer.</p>";
        }
     });
 

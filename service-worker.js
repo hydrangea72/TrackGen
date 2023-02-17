@@ -22,21 +22,28 @@ self.addEventListener('install', e => {
                 "/static/js/file_upload.js",
                 "/static/css/style.css"
             ])
-            .then(() => {console.log("Cached files!")})
+                .then(() => { console.log("Cached files!") })
         })
     );
 });
 
 self.addEventListener('fetch', e => {
     e.respondWith((async () => {
-        const r = await caches.match(e.request);
+        const requestUrl = new URL(e.request.url);
+        const isBgImage = requestUrl.pathname === '/static/media/bg8192.png';
+        const cache = await caches.open(cacheName);
+
+        if (isBgImage) {
+            const cachedBgResponse = await cache.match('/static/media/bg8192.png');
+            if (cachedBgResponse) {
+                console.log('Returning cached bg image');
+                return cachedBgResponse;
+            }
+        }
+
+        const response = await cache.match(e.request) || fetch(e.request);
 
         console.log('Fetching', e.request.url);
-
-        if (r && (e.request.url === "https://trackgen.codingcactus.repl.co/static/media/map.jpg" || !navigator.onLine)) return r;
-
-        const response = await fetch(e.request);
-        const cache = await caches.open(cacheName);
 
         console.log('Caching', e.request.url);
 
