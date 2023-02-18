@@ -1,6 +1,6 @@
 ## [TrackGen](https://trackgen.codingcactus.repl.co/) - The simplest tropical cyclone track map generator
 
-This is a fork of [TrackGen](https://trackgen.codingcactus.repl.co/) by [CodingCactus](https://github.com/Coding-Cactus). I have made some changes to the code - mostly to ensure it works offline, correctly.
+This is a fork of [TrackGen](https://trackgen.codingcactus.repl.co/) by [CodingCactus](https://github.com/Coding-Cactus). I have made some changes to the code - mostly to ensure it works offline, correctly. The world background is also stored in the repository, instead of an external server.
 
 ### Usage
 - Each line is a point to be plotted on the map
