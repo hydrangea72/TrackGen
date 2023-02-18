@@ -1,5 +1,5 @@
 const appPrefix = 'TrackGen';
-const appVersion = 'v1';
+const appVersion = 'v1.0.0';
 const cacheName = `${appPrefix}-${appVersion}`;
 
 self.addEventListener('fetch', e => {
