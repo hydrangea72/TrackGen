@@ -45,7 +45,7 @@ document.querySelector("#close").addEventListener("click", () => {
 let loaded = false;
 const BLUE_MARBLE = new Image();
 
-const MAP_URL = "/static/media/bg8192.png";
+const MAP_URL = "static/media/bg8192.png";
 caches.match(MAP_URL)
     .then(r => {
        if (r || confirm("This website requires you to download a ~22MB image, would you like to continue?")) {
