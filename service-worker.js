@@ -1,42 +1,18 @@
-const cacheName = "cache-v3";
-
-self.addEventListener('install', e => {
-    e.waitUntil(
-        caches.open(cacheName).then(cache => {
-            cache.addAll([
-                "/",
-                "/manifest.json",
-                "/index.html",
-                "/static/media/favicon.png",
-                "/static/media/cyclone.png",
-                "/static/media/background.png",
-                "/static/js/sw.js",
-                "/static/js/rsmc.js",
-                "/static/js/new_point.js",
-                "/static/js/hurdat.js",
-                "/static/js/pages.js",
-                "/static/js/ibtracs.js",
-                "/static/js/manual_input.js",
-                "/static/js/generate.js",
-                "/static/js/atcf.js",
-                "/static/js/file_upload.js",
-                "/static/css/style.css"
-            ])
-                .then(() => { console.log("Cached files!") })
-        })
-    );
-});
+const appPrefix = 'TrackGen';
+const appVersion = 'v1';
+const cacheName = `${appPrefix}-${appVersion}`;
 
 self.addEventListener('fetch', e => {
+    console.log('Fetch event for ', e.request.url);
     e.respondWith((async () => {
         const requestUrl = new URL(e.request.url);
-        const isBgImage = requestUrl.pathname === '/static/media/bg8192.png';
+        const isBgImage = requestUrl.pathname === 'TrackGen/static/media/bg8192.png';
         const cache = await caches.open(cacheName);
 
         if (isBgImage) {
-            const cachedBgResponse = await cache.match('/static/media/bg8192.png');
+            const cachedBgResponse = await cache.match('TrackGen/static/media/bg8192.png');
             if (cachedBgResponse) {
-                console.log('Returning cached bg image');
+                console.log('Returning cached background image...');
                 return cachedBgResponse;
             }
         }
@@ -51,4 +27,48 @@ self.addEventListener('fetch', e => {
 
         return response;
     })());
+});
+
+self.addEventListener('install', e => {
+    e.waitUntil(
+        caches.open(cacheName).then(cache => {
+            console.log("Installing cache: " + cacheName);
+            cache.addAll([
+                "/",
+                "/TrackGen/",
+                "/TrackGen/manifest.json",
+                "/TrackGen/index.html",
+                "/TrackGen/static/media/favicon.png",
+                "/TrackGen/static/media/cyclone.png",
+                "/TrackGen/static/media/background.png",
+                "/TrackGen/static/js/sw.js",
+                "/TrackGen/static/js/rsmc.js",
+                "/TrackGen/static/js/new_point.js",
+                "/TrackGen/static/js/hurdat.js",
+                "/TrackGen/static/js/pages.js",
+                "/TrackGen/static/js/ibtracs.js",
+                "/TrackGen/static/js/manual_input.js",
+                "/TrackGen/static/js/generate.js",
+                "/TrackGen/static/js/atcf.js",
+                "/TrackGen/static/js/file_upload.js",
+                "/TrackGen/static/css/style.css"
+            ])
+                .then(() => { console.log("Cached files!") })
+        })
+    );
+});
+
+self.addEventListener('activate', e => {
+    e.waitUntil(
+        caches.keys().then(cacheNames => {
+            return Promise.all(
+                cacheNames.map(cache => {
+                    if (cache !== cacheName) {
+                        console.log("Deleting old cache: " + cache);
+                        return caches.delete(cache);
+                    }
+                })
+            );
+        })
+    );
 });
