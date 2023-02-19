@@ -40,23 +40,26 @@ self.addEventListener('install', e => {
     e.waitUntil(
         caches.open(cacheName).then(cache => {
             console.log("Installing cache: " + cacheName);
-            cache.addAll(filesToCache)
-                .then(() => { console.log("Cached files!") })
+            return cache.addAll(filesToCache)
+        }).then(() => {
+            console.log("Cached files!");
+        }).catch(error => {
+            console.error("Installation failed: " + error);
         })
     );
 });
 
-//self.addEventListener('activate', e => {
-//    e.waitUntil(
-//        caches.keys().then(cacheNames => {
-//            return Promise.all(
-//                cacheNames.map(cache => {
-//                    if (cache !== cacheName) {
-//                        console.log("Deleting old cache: " + cache);
-//                        return caches.delete(cache);
-//                    }
-//                })
-//            );
-//        })
-//    );
-//});
+self.addEventListener('activate', event => {
+    e.waitUntil(
+        caches.keys().then(cacheNames => {
+            return Promise.all(
+                cacheNames.filter(cacheName => {
+                    if (cacheName !== cacheName) {
+                        console.log("Deleting old cache: " + cacheName);
+                        return caches.delete(cacheName);
+                    }
+                })
+            );
+        })
+    );
+});
