@@ -32,6 +32,9 @@ self.addEventListener('fetch', e => {
             }
             console.log("Not found in cache, fetching request from the network: " + e.request.url);
             return fetch(e.request);
+        }).catch(error => {
+            console.error("Fetch failed: " + error);
+            throw error;
         })
     );
 });
@@ -49,17 +52,14 @@ self.addEventListener('install', e => {
     );
 });
 
-self.addEventListener('activate', event => {
+self.addEventListener('activate', e => {
     e.waitUntil(
         caches.keys().then(cacheNames => {
             return Promise.all(
-                cacheNames.filter(cacheName => {
-                    if (cacheName !== cacheName) {
-                        console.log("Deleting old cache: " + cacheName);
-                        return caches.delete(cacheName);
-                    }
-                })
+                cacheNames.filter(name => name !== cacheName)
+                    .map(name => caches.delete(name))
             );
+            console.log("Old caches deleted!");
         })
     );
 });
