@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
 
 <head>
 	<meta charset="utf-8">
@@ -14,7 +14,7 @@
 <body>
 	<main>
 		<h1>TrackGen</h1>
-		<div id="input-type">
+		<div id="input-type">h3
 			<button class="selected">Manual Input</button>
 			<button>BT File</button>
 		</div>
@@ -34,14 +34,15 @@
 						<div>
 							<label>
 								<span>Name: </span>
-								<input type="text" class="name">
+								<input type="text" class="name" aria-label="Name">
 							</label>
 						</div>
 
 						<div>
 							<label>
 								<span>Latitude: </span>
-								<input type="number" step="any" class="latitude" min="0" max="90" required>
+								<input type="number" step="any" class="latitude" min="0" max="90" aria-label="Latitude"
+									required>
 							</label>
 							<select class="latitude">
 								<option value="°N">°N</option>
@@ -52,7 +53,8 @@
 						<div>
 							<label>
 								<span>Longitude: </span>
-								<input type="number" step="any" class="longitude" min="0" max="180" required>
+								<input type="number" step="any" class="longitude" min="0" max="180" aria-label="Longitude"
+									required>
 							</label>
 							<select class="longitude">
 								<option value="°E">°E</option>
@@ -63,7 +65,7 @@
 						<div>
 							<label>
 								<span>Wind Speed: </span>
-								<input type="number" step="any" min="0" class="speed">
+								<input type="number" step="any" min="0" class="speed" aria-label="Wind Speed">
 							</label>
 							<select class="speed">
 								<option value="kph">kph</option>
