@@ -24,16 +24,16 @@ const filesToCache = [
 
 self.addEventListener('fetch', e => {
     console.log('Fetch event for ', e.request.url);
-    e.respondWith((async () => {
-        cache.match(e.request).then(function(response) {
-            if (response) {
-                console.log('Returning cached response: ', response);
-                return response;
+    e.respondWith(
+        caches.match(e.request).then(request => {
+            if (request) {
+                console.log("Found in cache, returning cached response: " + e.request.url);
+                return request;
             }
-            console.log('Fetching request from the network: ', e.request.url);
+            console.log("Not found in cache, fetching request from the network: " + e.request.url);
             return fetch(e.request);
         })
-    })());
+    );
 });
 
 self.addEventListener('install', e => {
@@ -46,17 +46,17 @@ self.addEventListener('install', e => {
     );
 });
 
-self.addEventListener('activate', e => {
-    e.waitUntil(
-        caches.keys().then(cacheNames => {
-            return Promise.all(
-                cacheNames.map(cache => {
-                    if (cache !== cacheName) {
-                        console.log("Deleting old cache: " + cache);
-                        return caches.delete(cache);
-                    }
-                })
-            );
-        })
-    );
-});
+//self.addEventListener('activate', e => {
+//    e.waitUntil(
+//        caches.keys().then(cacheNames => {
+//            return Promise.all(
+//                cacheNames.map(cache => {
+//                    if (cache !== cacheName) {
+//                        console.log("Deleting old cache: " + cache);
+//                        return caches.delete(cache);
+//                    }
+//                })
+//            );
+//        })
+//    );
+//});
