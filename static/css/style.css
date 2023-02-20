@@ -29,7 +29,7 @@ html {
 
 ion-icon {
 	transform: scale(1.25) translateY(-1%);
-	vertical-align: middle;
+	vertical-align: bottom;
 }
 
 h1 {
@@ -214,7 +214,7 @@ button {
 
 #new-point span,
 ion-icon+span {
-	vertical-align: middle;
+	vertical-align: baseline;
 }
 
 .generate {
@@ -233,7 +233,7 @@ ion-icon+span {
 
 .generate:hover {
 	background-color: var(--foreground-1);
-	color: #fff;
+	color: #000;
 	cursor: pointer;
 }
 
