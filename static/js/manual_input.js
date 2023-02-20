@@ -1,23 +1,21 @@
 function speedToCat(speed) {
-	if (speed === 0) {
-		return -999;
-	} else if (speed <= 34) {
-		return -2;
-	} else if (speed <= 64) {
-		return -1;
-	} else if (speed <= 83) {
-		return 1;
-	} else if (speed <= 96) {
-		return 2;
-	} else if (speed <= 113) {
-		return 3;
-	} else if (speed <= 137) {
-		return 4;
-	} else {
-		return 5;
+	const speedCatMap = new Map([
+		[0, -999],
+		[34, -2],
+		[64, -1],
+		[83, 1],
+		[96, 2],
+		[113, 3],
+		[137, 4],
+		[Infinity, 5]
+	]);
+	for (let [speedThreshold, cat] of speedCatMap.entries()) {
+		if (speed <= speedThreshold) {
+			return cat;
+		}
 	}
 }
-
+  
 function stageToShape(stage) {
 	const s2s = {
 		"": "",

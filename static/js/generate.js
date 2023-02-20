@@ -1,41 +1,15 @@
-function catToColour(cat, accessible) {
-    if (accessible) {
-        if (cat === -999) {
-            return "#C0C0C0";
-        } else if (cat === -2) {
-            return "#5EBAFF";
-        } else if (cat === -1) {
-            return "#00FAF4";
-        } else if (cat === 1) {
-            return "#FFF795";
-        } else if (cat === 2) {
-            return "#FFD821";
-        } else if (cat === 3) {
-            return "#FF8F20";
-        } else if (cat === 4) {
-            return "#FF6060";
-        } else {
-            return "#C464D9";
-        }
-    } else {
-        if (cat === -999) {
-            return "#C0C0C0";
-        } else if (cat === -2) {
-            return "#5EBAFF";
-        } else if (cat === -1) {
-            return "#00FAF4";
-        } else if (cat === 1) {
-            return "#FFFFCC";
-        } else if (cat === 2) {
-            return "#FFE775";
-        } else if (cat === 3) {
-            return "#FFC140";
-        } else if (cat === 4) {
-            return "#FF8F20";
-        } else {
-            return "#FF6060";
-        }
-    }
+function catToColour(cat = -999, accessible = true) {
+    const colorMap = new Map([
+        [-999, "#C0C0C0"],
+        [-2, "#5EBAFF"],
+        [-1, "#00FAF4"],
+        [1, accessible ? "#FFF795" : "#FFFFCC"],
+        [2, accessible ? "#FFD821" : "#FFE775"],
+        [3, accessible ? "#FF8F20" : "#FFC140"],
+        [4, accessible ? "#FF6060" : "#FF8F20"],
+        [5, accessible ? "#C464D9" : "#FF6060"],
+    ]);
+    return colorMap.get(cat) || "#C0C0C0";
 }
 
 document.querySelector("#close").addEventListener("click", () => {
