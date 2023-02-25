@@ -1,6 +1,7 @@
 {
     "name": "TrackGen",
     "short_name": "TrackGen",
+    "description": "TrackGen is a web application that allows you to generate tracks for tropical cyclones.",
     "start_url": "/index.html",
     "scope": "/",
     "icons": [
