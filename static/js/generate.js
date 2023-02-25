@@ -1,13 +1,13 @@
 function catToColour(cat = -999, accessible = true) {
     const colorMap = new Map([
         [-999, "#C0C0C0"],
-        [-2, "#5EBAFF"],
-        [-1, "#00FAF4"],
-        [1, accessible ? "#FFF795" : "#FFFFCC"],
-        [2, accessible ? "#FFD821" : "#FFE775"],
-        [3, accessible ? "#FF8F20" : "#FFC140"],
-        [4, accessible ? "#FF6060" : "#FF8F20"],
-        [5, accessible ? "#C464D9" : "#FF6060"],
+        [-2, accessible ? "#6EC1EA" : "#5EBAFF"],
+        [-1, accessible ? "#4DFFFF" : "#00FAF4"],
+        [1, accessible ? "#FFFFD9" : "#FFFFCC"],
+        [2, accessible ? "#FFD98C" : "#FFE775"],
+        [3, accessible ? "#FF9E59" : "#FFC140"],
+        [4, accessible ? "#FF738A" : "#FF8F20"],
+        [5, accessible ? "#a188fc" : "#FF6060"],
     ]);
     return colorMap.get(cat) || "#C0C0C0";
 }
