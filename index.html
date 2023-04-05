@@ -57,8 +57,8 @@
 						<div>
 							<label>
 								<span>Longitude: </span>
-								<input type="number" step="any" class="longitude" min="0" max="180" aria-label="Longitude"
-									required>
+								<input type="number" step="any" class="longitude" min="0" max="180"
+									aria-label="Longitude" required>
 							</label>
 							<select class="longitude">
 								<option value="°E">°E</option>
@@ -90,21 +90,26 @@
 						</div>
 
 						<div>
-							<button type="button" class="remove"><ion-icon name="close-circle-outline"></ion-icon>
+							<button type="button" class="remove"><ion-icon name="close-circle-outline"
+									aria-hidden="true"></ion-icon>
 								<span>Remove Point</span></button>
 						</div>
 					</div>
 				</div>
 
-				<button type="button" id="new-point"><ion-icon name="add-circle-outline"></ion-icon> <span>New
+				<button type="button" id="new-point"><ion-icon name="add-circle-outline" aria-hidden="true"></ion-icon>
+					<span>New
 						Point</span></button>
 
 
 				<button class="generate" type="submit">
-					<ion-icon name="analytics-outline"></ion-icon>
+					<ion-icon name="analytics-outline" aria-hidden="true"></ion-icon>
 					<span>Generate Map</span>
 				</button>
 			</form>
+			<div id="accessible-container">
+				<input type="checkbox" id="accessible"><label for="accessible">Use accessible colours</label>
+			</div>
 		</div>
 
 		<div class="page">
@@ -120,29 +125,28 @@
 			<div id="page2-content">
 				<form id="paste-upload">
 					<textarea placeholder="Paste BT file here" required></textarea>
-					<button type="submit" class="generate"><ion-icon name="analytics-outline"></ion-icon> <span>Generate
+					<button type="submit" class="generate"><ion-icon name="analytics-outline"
+							aria-hidden="true"></ion-icon> <span>Generate
 							Map</span></button>
 				</form>
 
 				<form id="file-upload">
 					<div class="separator">OR</div>
-					<label for="file-input" class="generate"><ion-icon name="folder-outline"></ion-icon> <span>Upload
+					<label for="file-input" class="generate"><ion-icon name="folder-outline"
+							aria-hidden="true"></ion-icon> <span>Upload
 							File</span></label>
 					<input type="file" id="file-input">
 				</form>
 			</div>
 		</div>
 
-		<div id="accessible-container">
-			<input type="checkbox" id="accessible"><label for="accessible">Use accessible colours</label>
-		</div>
 	</main>
 
 	<div id="image-container" class="hidden">
 		<img id="loader" src="static/media/cyclone.png" alt="loading" />
 		<img id="output" alt="generated track map" class="hidden" />
 		<button id="close">
-			<ion-icon name="close-outline"></ion-icon>
+			<ion-icon name="close-outline" aria-hidden="true"></ion-icon>
 		</button>
 	</div>
 
@@ -156,12 +160,11 @@
 	<script src="static/js/hurdat.js"></script>
 	<script src="static/js/ibtracs.js"></script>
 	<script src="static/js/file_upload.js"></script>
-	<scriot src="static/js/file_upload.js"></script>
 
 	<script src="static/js/manual_input.js"></script>
 
-	<script type="module" src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.esm.js"></script>
-	<script nomodule src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.js"></script>
+	<script type="module" src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.esm.js"></script>
+	<script nomodule src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.js"></script>
 </body>
 
 </html>
