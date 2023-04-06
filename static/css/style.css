@@ -311,7 +311,7 @@ ion-icon+span {
 	align-items: center;
 	text-align: center;
 	font-size: 20px;
-	color: var(--foreground-1);	
+	color: var(--foreground-1);
 }
 
 .separator::before,
@@ -452,6 +452,11 @@ ion-icon+span {
 	#paste-upload {
 		grid-template-rows: 5fr 1fr;
 	}
+
+	#gens button {
+		font-size: 2.5vh;
+		padding: 1.75vh 0;
+	}
 }
 
 #accessible-container {
@@ -463,4 +468,10 @@ ion-icon+span {
 #accessible-container * {
 	vertical-align: middle;
 	margin-left: .4rem;
+}
+
+#gens {
+	display: grid;
+	grid-template-columns: repeat(2, 1fr);
+	gap: 1vw;
 }

@@ -1,5 +1,5 @@
 const appPrefix = 'TrackGen';
-const appVersion = 'v1.0.1';
+const appVersion = 'v1.0.2';
 const cacheName = `${appPrefix}-${appVersion}`;
 const filesToCache = [
     '/',
@@ -9,6 +9,7 @@ const filesToCache = [
     'static/media/cyclone.png',
     'static/media/background.png',
     'static/media/bg8192.png',
+    'static/media/bg12000.jpg',
     'static/js/sw.js',
     'static/js/rsmc.js',
     'static/js/new_point.js',
