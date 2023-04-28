@@ -1,4 +1,5 @@
 function speedToCat(speed) {
+	const maxSpeed = Number.MAX_SAFE_INTEGER;
 	const speedCatMap = new Map([
 		[0, -999],
 		[34, -2],
@@ -7,7 +8,8 @@ function speedToCat(speed) {
 		[96, 2],
 		[113, 3],
 		[137, 4],
-		[Infinity, 5]
+		[157, 5],
+		[maxSpeed, 5]
 	]);
 	for (let [speedThreshold, cat] of speedCatMap.entries()) {
 		if (speed <= speedThreshold) {
