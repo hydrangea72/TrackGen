@@ -7,6 +7,8 @@ function getAtcfShape(initials) {
         return "square";
     } else if (["EX", "MD", "IN", "DS", "LO", "WV", "ET", "DB"].includes(i)) {
         return "triangle";
+    } else {
+        console.log("Unknown ATCF initials: " + i);
     }
 }
 

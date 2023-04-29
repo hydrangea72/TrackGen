@@ -7,6 +7,8 @@ function getIbtracsShape(initials) {
         return "square";
     } else if (["ET", "DS"].includes(i)) {
         return "triangle";
+    } else {
+        console.log("Unknown IBTRACS initials: " + i);
     }
 }
 

@@ -3,6 +3,8 @@ function getRsmcShape(num) {
         return "circle";
     } else if (num === "6") {
         return "triangle";
+    } else {
+        console.log("Unknown RSMC initials: " + num);
     }
 }
 
