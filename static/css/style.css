@@ -453,10 +453,77 @@ ion-icon+span {
 		grid-template-rows: 5fr 1fr;
 	}
 
-	#gens button {
-		font-size: 2.5vh;
-		padding: 1.75vh 0;
+	#gens {
+		grid-template-columns: repeat(1, 1fr);
 	}
+}
+
+@media screen and (max-width: 600px) {
+	#inputs {
+		max-height: 50vh;
+	}
+
+	#inputs .point {
+		display: block;
+		word-break: normal;
+	}
+
+	#inputs .point>div {
+		margin: 5px 0;
+	}
+
+	#inputs .point label>span {
+		display: inline-block;
+		width: 20%;
+		font-size: 12px;
+		white-space: break-spaces;
+		vertical-align: middle;
+	}
+
+	#inputs .point input,
+	#inputs .point select,
+	#inputs .point button {
+		font-size: 17px;
+	}
+
+	#inputs .point :not(:first-child) input {
+		width: 55%;
+	}
+
+	#inputs .point select {
+		width: 23%;
+	}
+
+	#inputs .point .stage,
+	#inputs .point .name {
+		width: 79%;
+	}
+
+	#new-point,
+	.generate {
+		font-size: 23px;
+		padding: 10px 0;
+		border-radius: 7px;
+		margin-top: 10px;
+	}
+
+	#page2-content {
+		height: 96%;
+	}
+
+	#paste-upload {
+		grid-template-rows: 5fr 1fr;
+	}
+
+	#gens {
+		grid-template-columns: repeat(1, 1fr);
+	}
+	
+}
+
+#gens button {
+	font-size: 2.5vh;
+	padding: 1.75vh 0;
 }
 
 #accessible-container {
