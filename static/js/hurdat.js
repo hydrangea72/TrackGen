@@ -1,12 +1,14 @@
 function getHurdatShape(initials) {
     const i = initials.toUpperCase();
 
-    if (["TD", "TS", "HU", "TY"].includes(i)) {
+    if (["TD", "TS", "HU", "TY", "ST"].includes(i)) {
         return "circle";
     } else if (["SD", "SS"].includes(i)) {
         return "square";
     } else if (["EX", "LO", "DB", "WV"].includes(i)) {
         return "triangle";
+    } else {
+        console.log("Unknown HURDAT shape: " + i);
     }
 }
 
