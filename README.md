@@ -9,8 +9,8 @@ The simplest tropical cyclone track map generator. This is a fork of [TrackGen](
 
 | Field      | Description | Example | Required? |
 |:----------:|:------------|:-------:|:---------:|
-| Name       | Name of the cyclone, used to join points together | Iota | - [ ] Not required |
-| Latitude   | Latitude coordinate, choose either °N or °S instead of using negative numbers | 52 °N | - [x] Required |
-| Longitude  | Longitude coordinate, choose either °E or °W instead of using negative numbers | 1°W | - [x] Required |
-| Wind Speed | Wind speed at that point, leave blank for unknown speeds | 25 kt | - [ ] Not required |
-| Stage      | Stage of tropical cyclone (determines shape used for point) | Tropical Cyclone | - [x] Required |
+| Name       | Name of the cyclone, used to join points together | Iota | <ul><li> [ ] No </li></ul> |
+| Latitude   | Latitude coordinate, choose either °N or °S instead of using negative numbers | 52 °N | <ul><li> [x] Yes </li></ul> |
+| Longitude  | Longitude coordinate, choose either °E or °W instead of using negative numbers | 1°W | <ul><li> [x] Yes </li></ul> |
+| Wind Speed | Wind speed at that point, leave blank for unknown speeds | 25 kt | <ul><li> [ ] No </li></ul> |
+| Stage      | Stage of tropical cyclone (determines shape used for point) | Tropical Cyclone | <ul><li> [x] Yes </li></ul> |
