@@ -384,11 +384,16 @@ ion-icon+span {
 	font-size: 40px;
 	line-height: 40px;
 	background-color: var(--foreground-1);
-	color: #fff;
+	color: #000;
 	border: none;
 	padding: 0;
 	border-radius: 50%;
 	cursor: pointer;
+}
+
+#image-container #close:hover {
+	background-color: red;
+	color: #fff;
 }
 
 @media screen and (max-width: 800px) {
@@ -475,8 +480,8 @@ ion-icon+span {
 }
 
 #accessible-container * {
-	vertical-align: middle;
-	margin-left: .4rem;
+	vertical-align: baseline;
+	margin: .2rem;
 }
 
 #gens {
