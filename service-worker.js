@@ -1,4 +1,3 @@
-// Implementing a cache-first with cache refresh strategy USING async/await
 const appPrefix = 'TrackGen';
 const appVersion = 'v1.0.2';
 const cacheName = `${appPrefix}-${appVersion}`;
@@ -27,25 +26,24 @@ const filesToCache = [
 function isCachable(request) {
     const url = new URL(request.url);
     return url.origin === location.origin && filesToCache.includes(url.pathname);
-  }
-  
-  async function cacheFirstWithRefresh(request) {
+}
+
+async function cacheFirstWithRefresh(request) {
     const fetchResponsePromise = fetch(request).then(async (networkResponse) => {
-      if (networkResponse.ok) {
-        const cache = await caches.open(cacheName);
-        cache.put(request, networkResponse.clone());
-      }
-      console.log(`[Service Worker] Fetched URL ${request.url} from network.`);
-      return networkResponse;
+        if (networkResponse.ok) {
+            const cache = await caches.open(cacheName);
+            cache.put(request, networkResponse.clone());
+        }
+        console.log(`[Service Worker] Fetched URL ${request.url} from network.`);
+        return networkResponse;
     });
-  
+
     return (await caches.match(request)) || (await fetchResponsePromise);
-  }
-  
-  self.addEventListener("fetch", (event) => {
+}
+
+self.addEventListener("fetch", (event) => {
     if (isCachable(event.request)) {
-      event.respondWith(cacheFirstWithRefresh(event.request));
-      console. log(`[Service Worker] URL ${event.request.url} served from cache.`);
+        event.respondWith(cacheFirstWithRefresh(event.request));
+        console.log(`[Service Worker] URL ${event.request.url} served from cache.`);
     }
-  });
-  
+});
