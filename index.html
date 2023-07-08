@@ -44,17 +44,17 @@
 						<div>
 							<label>
 								<span>Name: </span>
-								<input type="text" class="name" aria-label="Name">
+								<input type="text" class="name" aria-label="Name" name="storm-name">
 							</label>
 						</div>
 
 						<div>
 							<label>
 								<span>Latitude: </span>
-								<input type="number" step="any" class="latitude" min="0" max="90" aria-label="Latitude"
+								<input type="number" step="any" class="latitude" min="0" max="90" aria-label="Latitude" name="latitude"
 									required>
 							</label>
-							<select class="latitude">
+							<select class="latitude" name="latitude-format">
 								<option value="°N">°N</option>
 								<option value="°S">°S</option>
 							</select>
@@ -64,9 +64,9 @@
 							<label>
 								<span>Longitude: </span>
 								<input type="number" step="any" class="longitude" min="0" max="180"
-									aria-label="Longitude" required>
+									aria-label="Longitude" name="longitude" required>
 							</label>
-							<select class="longitude">
+							<select class="longitude" name="longitude-format">
 								<option value="°E">°E</option>
 								<option value="°W">°W</option>
 							</select>
@@ -75,9 +75,9 @@
 						<div>
 							<label>
 								<span>Wind Speed: </span>
-								<input type="number" step="any" min="0" class="speed" aria-label="Wind Speed">
+								<input type="number" step="any" min="0" class="speed" aria-label="Wind Speed" name="speed">
 							</label>
-							<select class="speed">
+							<select class="speed" name="speed-format">
 								<option value="kph">kph</option>
 								<option value="mph">mph</option>
 								<option value="kt">kt</option>
@@ -87,7 +87,7 @@
 						<div>
 							<label>
 								<span>Stage: </span>
-								<select class="stage">
+								<select class="stage" name="stage">
 									<option value="Extratropical cyclone">Extratropical cyclone</option>
 									<option value="Subtropical cyclone">Subtropical cyclone</option>
 									<option value="Tropical cyclone">Tropical cyclone</option>
@@ -136,7 +136,7 @@
 			</div>
 			<div id="page2-content">
 				<form id="paste-upload">
-					<textarea placeholder="Paste BT file here" required></textarea>
+					<textarea placeholder="Paste BT file here" name="bt-file" required></textarea>
 					<button type="submit" class="generate"><ion-icon name="analytics-outline"
 							aria-hidden="true"></ion-icon> <span>Generate
 							Map</span></button>
