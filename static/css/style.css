@@ -80,7 +80,7 @@ main {
 	width: 90vw;
 	display: inline-block;
 	vertical-align: top;
-	transition: 1s margin-left;
+	transition: .5s margin-left;
 }
 
 .page~.page {
