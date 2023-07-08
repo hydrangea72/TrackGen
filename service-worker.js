@@ -23,6 +23,7 @@ const filesToCache = [
     'static/css/style.css'
 ];
 
+// Testing
 function isCachable(request) {
     const url = new URL(request.url);
     return url.origin === location.origin && filesToCache.includes(url.pathname);
