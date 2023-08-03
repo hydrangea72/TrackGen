@@ -47,8 +47,8 @@ function createMap(data, accessible) {
                 const FULL_WIDTH = BLUE_MARBLE.width;
                 const FULL_HEIGHT = BLUE_MARBLE.height;
 
-                const DOT_SIZE = 0.29890625 / 700 * FULL_WIDTH;
-                const LINE_SIZE = 0.09 / 700 * FULL_WIDTH;
+                const DOT_SIZE = 0.29890625 / 900 * FULL_WIDTH;
+                const LINE_SIZE = 0.09 / 900 * FULL_WIDTH;
 
                 let max_lat = 0;
                 let max_long = 0;
