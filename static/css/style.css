@@ -290,7 +290,7 @@ ion-icon+span {
 }
 
 #paste-upload textarea {
-	border-radius: 20px;
+	border-radius: .5rem;
 	resize: none;
 	padding: 1.5vh;
 	font-size: 16px;
