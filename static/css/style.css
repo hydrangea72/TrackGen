@@ -477,6 +477,7 @@ ion-icon+span {
 	color: var(--foreground-1);
 	font-size: 20px;
 	margin: .5rem auto;
+	white-space: normal;
 }
 
 #accessible-container * {
