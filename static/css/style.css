@@ -485,6 +485,10 @@ ion-icon+span {
 	margin: .2rem;
 }
 
+#accessible-container label {
+	cursor: help;
+}
+
 #gens {
 	display: grid;
 	grid-template-columns: repeat(2, 1fr);
