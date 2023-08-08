@@ -51,8 +51,8 @@
 						<div>
 							<label>
 								<span>Latitude: </span>
-								<input type="number" step="any" class="latitude" min="0" max="90" aria-label="Latitude" name="latitude"
-									required>
+								<input type="number" step="any" class="latitude" min="0" max="90" aria-label="Latitude"
+									name="latitude" required>
 							</label>
 							<select class="latitude" name="latitude-format">
 								<option value="°N">°N</option>
@@ -75,7 +75,8 @@
 						<div>
 							<label>
 								<span>Wind Speed: </span>
-								<input type="number" step="any" min="0" class="speed" aria-label="Wind Speed" name="speed">
+								<input type="number" step="any" min="0" class="speed" aria-label="Wind Speed"
+									name="speed">
 							</label>
 							<select class="speed" name="speed-format">
 								<option value="kph">kph</option>
@@ -175,7 +176,8 @@
 
 	<script src="static/js/manual_input.js"></script>
 
-	<script src="https://unpkg.com/ionicons@latest/dist/ionicons.js"></script>
+	<script type="module" src="https://unpkg.com/ionicons@latest/dist/ionicons/ionicons.esm.js"></script>
+	<script nomodule="" src="https://unpkg.com/ionicons@latest/dist/ionicons/ionicons.js"></script>
 </body>
 
 </html>
