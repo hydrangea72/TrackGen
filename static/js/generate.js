@@ -19,26 +19,20 @@ document.querySelector("#close").addEventListener("click", () => {
 let loaded = false;
 const BLUE_MARBLE = new Image();
 
-const buttonsContainer = document.querySelector(".page");
-buttonsContainer.addEventListener("click", (event) => {
-    if (event.target.classList.contains("generate")) {
-        const size = event.target.dataset.size;
-        let MAP_URL;
-        switch (size) {
-            case "large":
-                MAP_URL = "static/media/bg12000.jpg";
-                break;
-            case "normal":
-                MAP_URL = "static/media/bg8192.png";
-                break;
-            default:
-                MAP_URL = "static/media/bg8192.png";
-                break;
-        }
+const buttons = document.querySelectorAll(".generate");
+buttons.forEach(button => {
+    button.addEventListener("click", () => {
+        const size = button.dataset.size;
+        const MAP_URL = size === "large"
+            ? "static/media/bg12000.jpg"
+            : size === "normal"
+                ? "static/media/bg8192.png"
+                : "static/media/bg8192.png";
+
         BLUE_MARBLE.src = MAP_URL;
         BLUE_MARBLE.onload = () => { loaded = true };
         BLUE_MARBLE.onerror = (err) => { console.error(err); }
-    }
+    });
 });
 
 function createMap(data, accessible) {
