@@ -7,7 +7,8 @@
 	<title>TrackGen</title>
 	<meta name="author" content="Coding-Cactus, StrawberryMaster">
 	<meta name="description" content="Generate track maps from tropical cyclone data">
-	<meta name="keywords" content="tropical cyclone, track map, hurricane, typhoon, cyclone, storm, weather, meteorology, data visualization, open source">
+	<meta name="keywords"
+		content="tropical cyclone, track map, hurricane, typhoon, cyclone, storm, weather, meteorology, data visualization, open source">
 	<meta name="theme-color" content="#fbaf00">
 
 	<meta property="og:title" content="TrackGen">
@@ -28,6 +29,17 @@
 </head>
 
 <body>
+
+	<div id="map-indicator">
+		<ion-icon name="map-outline"></ion-icon>
+
+		<div class="loader" style="display: none;">
+			<svg class="circular-loader" viewBox="25 25 50 50">
+				<circle class="loader-path" cx="50" cy="50" r="20" fill="none" stroke="#fff" stroke-width="5" />
+			</svg>
+		</div>
+	</div>
+
 	<main>
 		<h1>TrackGen</h1>
 		<div id="input-type">
@@ -127,8 +139,11 @@
 
 			</form>
 			<div id="accessible-container">
-				<input type="checkbox" id="accessible"><label for="accessible" title="Uses the new, accessible Wikipedia color scheme.">Use accessible colours</label><br/>
-				<input type="checkbox" id="smaller-dots"><label for="smaller-dots" title="[EXPERIMENTAL] Uses smaller dot sizes on the generated maps. Intended for summary maps only.">Use smaller dot sizes (summary maps
+				<input type="checkbox" id="accessible"><label for="accessible"
+					title="Uses the new, accessible Wikipedia color scheme.">Use accessible colours</label><br />
+				<input type="checkbox" id="smaller-dots"><label for="smaller-dots"
+					title="[EXPERIMENTAL] Uses smaller dot sizes on the generated maps. Intended for summary maps only.">Use
+					smaller dot sizes (summary maps
 					only)</label>
 			</div>
 		</div>

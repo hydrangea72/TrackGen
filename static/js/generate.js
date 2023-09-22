@@ -18,6 +18,8 @@ document.querySelector("#close").addEventListener("click", () => {
 
 let loaded = false;
 const BLUE_MARBLE = new Image();
+BLUE_MARBLE.crossOrigin = "anonymous";
+const loader = document.querySelector("#map-indicator .loader");
 
 const buttons = document.querySelectorAll(".generate");
 buttons.forEach(button => {
@@ -30,7 +32,11 @@ buttons.forEach(button => {
                 : "static/media/bg8192.png";
 
         BLUE_MARBLE.src = MAP_URL;
-        BLUE_MARBLE.onload = () => { loaded = true };
+        BLUE_MARBLE.onload = () => {
+            loaded = true;
+            loader.style.display = "none";
+            document.querySelector("#map-indicator ion-icon").style.color = "#70c542";
+        }
         BLUE_MARBLE.onerror = (err) => { console.error(err); }
     });
 });
