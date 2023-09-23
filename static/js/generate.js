@@ -25,11 +25,19 @@ const buttons = document.querySelectorAll(".generate");
 buttons.forEach(button => {
     button.addEventListener("click", () => {
         const size = button.dataset.size;
-        const MAP_URL = size === "large"
-            ? "static/media/bg12000.jpg"
-            : size === "normal"
-                ? "static/media/bg8192.png"
-                : "static/media/bg8192.png";
+        let MAP_URL;
+
+        switch (size) {
+            case "large":
+                MAP_URL = "static/media/bg12000.jpg";
+                break;
+            case "normal":
+                MAP_URL = "static/media/bg8192.png";
+                break;
+            default:
+                MAP_URL = "static/media/bg8192.png";
+                break;
+        }
 
         BLUE_MARBLE.src = MAP_URL;
         BLUE_MARBLE.onload = () => {
@@ -58,7 +66,7 @@ function createMap(data, accessible) {
                 if (document.getElementById("smaller-dots").checked) {
                     DOT_SIZE = DOT_SIZE * 2.25 / 3.14;
                     LINE_SIZE = LINE_SIZE * 1.5 / 3.14;
-                }                
+                }
 
                 let max_lat = 0;
                 let max_long = 0;
