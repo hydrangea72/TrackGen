@@ -8,7 +8,7 @@ function getHurdatShape(initials) {
     } else if (["EX", "LO", "DB", "WV"].includes(i)) {
         return "triangle";
     } else {
-        console.log("Unknown HURDAT shape: " + i);
+        console.error("Unknown HURDAT shape: " + i);
     }
 }
 
