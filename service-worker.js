@@ -1,5 +1,5 @@
 const appPrefix = 'TrackGen';
-const appVersion = 'v1.0.2';
+const appVersion = 'v1.0.3';
 const cacheName = `${appPrefix}-${appVersion}`;
 const filesToCache = [
     '/',
