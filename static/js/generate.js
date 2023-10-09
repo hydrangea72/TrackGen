@@ -25,11 +25,7 @@ const buttons = document.querySelectorAll(".generate");
 buttons.forEach(button => {
     button.addEventListener("click", () => {
         const size = button.dataset.size;
-        const MAP_URL = size === "large"
-            ? "static/media/bg12000.jpg"
-            : size === "normal"
-                ? "static/media/bg8192.png"
-                : "static/media/bg8192.png";
+        const MAP_URL = getMapUrl(size);
 
         BLUE_MARBLE.src = MAP_URL;
         BLUE_MARBLE.onload = () => {
@@ -39,6 +35,27 @@ buttons.forEach(button => {
         }
         BLUE_MARBLE.onerror = (err) => { console.error(err); }
     });
+});
+
+function getMapUrl() {
+    const mapSelector = document.querySelector("#map-selector");
+    const mapType = mapSelector.options[mapSelector.selectedIndex].value;
+    const MAP_URL = mapType === "xlarge"
+        ? "static/media/bg21600.jpg"
+        : mapType === "large"
+            ? "static/media/bg12000.jpg"
+            : mapType === "normal"
+                ? "static/media/bg8192.png"
+                : "static/media/bg8192.png";
+    return MAP_URL;
+}
+
+// Event listener for map selector
+const mapSelector = document.getElementById('map-selector');
+mapSelector.addEventListener('change', () => {
+    const size = document.querySelector('.generate.active').dataset.size;
+    const MAP_URL = getMapUrl(size);
+    BLUE_MARBLE.src = MAP_URL;
 });
 
 function createMap(data, accessible) {

@@ -127,7 +127,7 @@
 						Point</span></button>
 
 				<div id="gens">
-					<button class="generate" type="submit" data-size="normal">
+					<button class="generate" type="submit">
 						<ion-icon name="analytics-outline" aria-hidden="true"></ion-icon>
 						<span>Generate Map - normal</span>
 					</button>
@@ -139,12 +139,18 @@
 
 			</form>
 			<div id="accessible-container">
-				<input type="checkbox" id="accessible"><label for="accessible"
+				<input type="checkbox" id="accessible"/><label for="accessible"
 					title="Uses the new, accessible Wikipedia color scheme.">Use accessible colours</label><br />
-				<input type="checkbox" id="smaller-dots"><label for="smaller-dots"
+				<input type="checkbox" id="smaller-dots"/><label for="smaller-dots"
 					title="[EXPERIMENTAL] Uses smaller dot sizes on the generated maps. Intended for summary maps only.">Use
 					smaller dot sizes (summary maps
-					only)</label>
+					only)</label><br/>
+				<label for="map-selector">Select map type (experimental):</label>
+				<select id="map-selector">
+					<option value="normal">Normal (default)</option>
+					<option value="large">Large</option>
+					<option value="xlarge">Extra large (slow)</option>
+				</select>
 			</div>
 		</div>
 
