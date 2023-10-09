@@ -23,11 +23,11 @@ const loader = document.querySelector("#map-indicator .loader");
 
 const buttons = document.querySelectorAll(".generate");
 buttons.forEach(button => {
-    button.addEventListener("click", () => {
+    button.addEventListener("click", async () => {
         const size = button.dataset.size;
-        const MAP_URL = getMapUrl(size);
+        const blob = await getMapBlob(size);
 
-        BLUE_MARBLE.src = MAP_URL;
+        BLUE_MARBLE.src = URL.createObjectURL(blob);
         BLUE_MARBLE.onload = () => {
             loaded = true;
             loader.style.display = "none";
@@ -37,7 +37,7 @@ buttons.forEach(button => {
     });
 });
 
-function getMapUrl() {
+async function getMapBlob() {
     const mapSelector = document.querySelector("#map-selector");
     const mapType = mapSelector.options[mapSelector.selectedIndex].value;
     const MAP_URL = mapType === "xlarge"
@@ -47,7 +47,9 @@ function getMapUrl() {
             : mapType === "normal"
                 ? "static/media/bg8192.png"
                 : "static/media/bg8192.png";
-    return MAP_URL;
+    const response = await fetch(MAP_URL);
+    const blob = await response.blob();
+    return blob;
 }
 
 // Event listener for map selector

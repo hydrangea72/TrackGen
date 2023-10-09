@@ -41,9 +41,9 @@ async function cacheFirstWithRefresh(request) {
     return (await caches.match(request)) || (await fetchResponsePromise);
 }
 
-self.addEventListener("fetch", (event) => {
+self.addEventListener("fetch", async (event) => {
     if (isCachable(event.request)) {
-        event.respondWith(cacheFirstWithRefresh(event.request));
+        event.respondWith(await cacheFirstWithRefresh(event.request));
         console.log(`[Service Worker] URL ${event.request.url} served from cache.`);
     }
 });
