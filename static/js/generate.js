@@ -41,7 +41,7 @@ function getMapUrl() {
     const mapSelector = document.querySelector("#map-selector");
     const mapType = mapSelector.options[mapSelector.selectedIndex].value;
     const MAP_URL = mapType === "xlarge"
-        ? "static/media/bg21600.jpg"
+        ? "https://cdn.trackgen.codingcactus.codes/map.jpg"
         : mapType === "large"
             ? "static/media/bg12000.jpg"
             : mapType === "normal"
