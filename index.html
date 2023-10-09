@@ -139,13 +139,16 @@
 
 			</form>
 			<div id="accessible-container">
-				<input type="checkbox" id="accessible"/><label for="accessible"
+				<input type="checkbox" id="accessible" /><label for="accessible"
 					title="Uses the new, accessible Wikipedia color scheme.">Use accessible colours</label><br />
-				<input type="checkbox" id="smaller-dots"/><label for="smaller-dots"
+				<input type="checkbox" id="smaller-dots" /><label for="smaller-dots"
 					title="[EXPERIMENTAL] Uses smaller dot sizes on the generated maps. Intended for summary maps only.">Use
 					smaller dot sizes (summary maps
-					only)</label><br/>
-				<label for="map-selector">Select map type (experimental):</label>
+					only)</label><br />
+				<label for="map-selector"
+					title="[EXPERIMENTAL] Select map type. Large and extra large maps are slower to generate.">
+					<ion-icon name="information-circle-outline" aria-hidden="true" style="margin: .2rem 0; vertical-align: text-bottom"></ion-icon>
+					Select map type (experimental):</label>
 				<select id="map-selector">
 					<option value="normal">Normal (default)</option>
 					<option value="large">Large</option>
