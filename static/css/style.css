@@ -1,5 +1,5 @@
-@import url('https://fonts.googleapis.com/css2?family=Raleway&family=Roboto+Mono&family=Varela+Round&display=swap');
-
+@import url('https://fonts.googleapis.com/css2?family=Roboto+Mono&family=Varela+Round&display=swap');
+@import url('https://code.cdn.mozilla.net/fonts/fira.css');
 
 :root {
 	--background-1: #7EA16B;
@@ -29,7 +29,7 @@ html {
 
 ion-icon {
 	transform: scale(1.25) translateY(-1%);
-	vertical-align: bottom;
+	vertical-align: text-bottom;
 }
 
 h1 {
@@ -194,7 +194,7 @@ textarea:focus {
 	font-size: 1.5vw;
 	line-height: 1.5vw;
 	border: none;
-	border-radius: .5rem;
+	border-radius: .25rem;
 	padding: 5px 10px;
 	vertical-align: middle;
 	color: #c00;
@@ -211,7 +211,7 @@ textarea:focus {
 select,
 button,
 #file-upload label {
-	font-family: 'Raleway', sans-serif;
+	font-family: 'Fira Sans', sans-serif;
 }
 
 #inputs label+select {
@@ -498,23 +498,25 @@ ion-icon+span {
 	padding: 1.75vh 0;
 }
 
-#accessible-container {
+#options-container {
 	color: var(--foreground-1);
 	font-size: 20px;
 	margin: .5rem auto;
 	white-space: normal;
 }
 
-#accessible-container * {
+#options-container * {
 	vertical-align: baseline;
 	margin: .2rem;
 }
 
-#accessible-container label {
+#options-container label {
 	cursor: help;
 }
 
 #map-selector {
+	font-weight: 300;
+	font-style: italic;
 	padding: .2rem .4rem;
 }
 
