@@ -20,8 +20,17 @@ let loaded = false;
 const BLUE_MARBLE = new Image();
 BLUE_MARBLE.crossOrigin = "anonymous";
 const loader = document.querySelector("#map-indicator .loader");
-
 const buttons = document.querySelectorAll(".generate");
+
+// Event listener for map selector
+const mapSelector = document.getElementById('map-selector');
+mapSelector.addEventListener('change', async () => {
+    const size = document.querySelector('.generate').dataset.size;
+    const MAP_URL = await getMapBlob(size);
+    BLUE_MARBLE.src = URL.createObjectURL(MAP_URL);
+});
+
+// Add event listener to buttons
 buttons.forEach(button => {
     button.addEventListener("click", async () => {
         const size = button.dataset.size;
@@ -52,13 +61,6 @@ async function getMapBlob() {
     return blob;
 }
 
-// Event listener for map selector
-const mapSelector = document.getElementById('map-selector');
-mapSelector.addEventListener('change', () => {
-    const size = document.querySelector('.generate.active').dataset.size;
-    const MAP_URL = getMapUrl(size);
-    BLUE_MARBLE.src = MAP_URL;
-});
 
 function createMap(data, accessible) {
     document.querySelector("#close").classList.add("hidden");
