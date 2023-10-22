@@ -147,12 +147,18 @@
 					only)</label><br />
 				<label for="map-selector"
 					title="[EXPERIMENTAL] Select map type. Large and extra large maps are slower to generate.">
-					<ion-icon name="information-circle-outline" aria-hidden="true" style="margin: .2rem 0; vertical-align: text-bottom"></ion-icon>
+					<ion-icon name="information-circle-outline" aria-hidden="true"
+						style="margin: .2rem 0; vertical-align: text-bottom"></ion-icon>
 					Select map type (experimental):</label>
 				<select id="map-selector">
-					<option value="normal">Normal (default)</option>
-					<option value="large">Large</option>
-					<option value="xlarge">Extra large (slow)</option>
+					<option value="normal" title="The original Blue Marble (2002) map.">Normal</option>
+					<option value="large-nxtgen"
+						title="Large map with the Blue Marble: Next Generation (July 2005) map.">Large
+						(Next Gen)</option>
+					<option value="large" title="A larger version of the Blue Marble (2002) map.">Large</option>
+					<option value="xlarge"
+						title="A very large version of the Blue Marble (2002) map. Not recommended unless you're only a really fast connection + have lots of free time.">
+						Extra large (slow)</option>
 				</select>
 			</div>
 		</div>

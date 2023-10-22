@@ -51,16 +51,17 @@ async function getMapBlob() {
     const mapType = mapSelector.options[mapSelector.selectedIndex].value;
     const MAP_URL = mapType === "xlarge"
         ? "https://cdn.trackgen.codingcactus.codes/map.jpg"
-        : mapType === "large"
-            ? "static/media/bg12000.jpg"
-            : mapType === "normal"
-                ? "static/media/bg8192.png"
-                : "static/media/bg8192.png";
+        : mapType === "large-nxtgen"
+            ? "static/media/bg21600-nxtgen.jpg"
+            : mapType === "large"
+                ? "static/media/bg12000.jpg"
+                : mapType === "normal"
+                    ? "static/media/bg8192.png"
+                    : "static/media/bg8192.png";
     const response = await fetch(MAP_URL);
     const blob = await response.blob();
     return blob;
 }
-
 
 function createMap(data, accessible) {
     document.querySelector("#close").classList.add("hidden");
