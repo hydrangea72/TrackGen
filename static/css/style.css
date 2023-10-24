@@ -4,6 +4,7 @@
 :root {
 	--background-1: #7EA16B;
 	--background-2: #FBAF00;
+	--background-3: #00511C;
 	--foreground-1: #FFD639;
 	--foreground-2: #007CBE;
 	--highlight: #FFA3AF;
@@ -252,7 +253,7 @@ ion-icon+span {
 	text-align: center;
 	border: none;
 	border-radius: .5rem;
-	color: var(--foreground-1);
+	color: var(--background-3);
 	background-color: #fff;
 	transition: all 0.3s;
 }
