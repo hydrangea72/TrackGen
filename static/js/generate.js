@@ -53,7 +53,7 @@ async function getMapBlob() {
         "xlarge": "https://cdn.trackgen.codingcactus.codes/map.jpg",
         "large-nxtgen": "static/media/bg21600-nxtgen.jpg",
         "large": "static/media/bg12000.jpg",
-        "blkmar": "static/media/bg13500-blkmar.png",
+        "blkmar": "static/media/bg13500-blkmar.jpg",
         "normal": "static/media/bg8192.png",
     };
 
