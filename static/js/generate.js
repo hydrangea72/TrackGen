@@ -49,15 +49,14 @@ buttons.forEach(button => {
 async function getMapBlob() {
     const mapSelector = document.querySelector("#map-selector");
     const mapType = mapSelector.options[mapSelector.selectedIndex].value;
-    const MAP_URL = mapType === "xlarge"
-        ? "https://cdn.trackgen.codingcactus.codes/map.jpg"
-        : mapType === "large-nxtgen"
-            ? "static/media/bg21600-nxtgen.jpg"
-            : mapType === "large"
-                ? "static/media/bg12000.jpg"
-                : mapType === "normal"
-                    ? "static/media/bg8192.png"
-                    : "static/media/bg8192.png";
+    const mapUrls = {
+        "xlarge": "https://cdn.trackgen.codingcactus.codes/map.jpg",
+        "large-nxtgen": "static/media/bg21600-nxtgen.jpg",
+        "large": "static/media/bg12000.jpg",
+        "normal": "static/media/bg8192.png",
+    };
+
+    const MAP_URL = mapUrls[mapType] || "static/media/bg8192.png"; // Default to normal map
     const response = await fetch(MAP_URL);
     const blob = await response.blob();
     return blob;
