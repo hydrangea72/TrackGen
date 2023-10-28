@@ -1,5 +1,5 @@
 const appPrefix = 'TrackGen';
-const appVersion = 'v1.0.3';
+const appVersion = 'v1.0.4';
 const cacheName = `${appPrefix}-${appVersion}`;
 const filesToCache = [
     '/',
@@ -29,21 +29,26 @@ function isCachable(request) {
 }
 
 async function cacheFirstWithRefresh(request) {
-    const fetchResponsePromise = fetch(request).then(async (networkResponse) => {
-        if (networkResponse.ok) {
-            const cache = await caches.open(cacheName);
-            cache.put(request, networkResponse.clone());
-        }
-        console.log(`[Service Worker] Fetched URL ${request.url} from network.`);
-        return networkResponse;
-    });
+    try {
+        const fetchResponsePromise = fetch(request).then(async (networkResponse) => {
+            if (networkResponse.ok) {
+                const cache = await caches.open(cacheName);
+                cache.put(request, networkResponse.clone());
+            }
+            console.log(`Fetched URL ${request.url} from network.`);
+            return networkResponse;
+        });
 
-    return (await caches.match(request)) || (await fetchResponsePromise);
+        return (await caches.match(request)) || (await fetchResponsePromise);
+    } catch (error) {
+        console.error(`Failed to fetch ${request.url} from cache or network.`);
+        throw error;
+    }
 }
 
 self.addEventListener("fetch", async (event) => {
     if (isCachable(event.request)) {
         event.respondWith(await cacheFirstWithRefresh(event.request));
-        console.log(`[Service Worker] URL ${event.request.url} served from cache.`);
+        console.log(`Serving ${event.request.url} from cache.`);
     }
 });
