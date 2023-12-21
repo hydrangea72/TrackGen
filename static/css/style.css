@@ -291,9 +291,9 @@ ion-icon+span {
 	border: none;
 	font-size: 2vh;
 	border-radius: 0.5vh;
-	padding: 0.5vh 1vh;
+	padding: .25rem;
+	vertical-align: middle;
 }
-
 
 #page2-content form {
 	height: 100%;
@@ -509,7 +509,7 @@ ion-icon+span {
 
 #options-container * {
 	vertical-align: baseline;
-	margin: .2rem;
+	margin: .2rem .4rem .6rem auto;
 }
 
 #options-container label {
@@ -519,7 +519,7 @@ ion-icon+span {
 #map-selector {
 	font-weight: 300;
 	font-style: italic;
-	padding: .2rem .4rem;
+	padding: .2rem;
 }
 
 #gens {
