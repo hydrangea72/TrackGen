@@ -1,5 +1,5 @@
 const appPrefix = 'TrackGen';
-const appVersion = 'v1.0.4';
+const appVersion = 'v1.0.5';
 const cacheName = `${appPrefix}-${appVersion}`;
 const filesToCache = [
     '/',
@@ -39,7 +39,10 @@ async function cacheFirstWithRefresh(request) {
             return networkResponse;
         });
 
-        return (await caches.match(request)) || (await fetchResponsePromise);
+        return Promise.race([
+            fetchResponsePromise,
+            caches.match(request)
+        ]);
     } catch (error) {
         console.error(`Failed to fetch ${request.url} from cache or network.`);
         throw error;
