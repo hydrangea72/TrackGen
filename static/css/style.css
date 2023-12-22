@@ -289,9 +289,9 @@ ion-icon+span {
 #file-format {
 	outline: none;
 	border: none;
-	font-size: 2vh;
+	font-size: .8em;
 	border-radius: 0.5vh;
-	padding: .25rem;
+	padding: .25em;
 	vertical-align: middle;
 }
 
@@ -509,7 +509,7 @@ ion-icon+span {
 
 #options-container * {
 	vertical-align: baseline;
-	margin: .2rem .4rem .6rem auto;
+	margin: .2em .4em .6em auto;
 }
 
 #options-container label {
