@@ -74,8 +74,8 @@ function createMap(data, accessible) {
                 let DOT_SIZE = 0.29890625 / 360 * FULL_WIDTH;
                 let LINE_SIZE = 0.09 / 360 * FULL_WIDTH;
                 if (document.getElementById("smaller-dots").checked) {
-                    DOT_SIZE = DOT_SIZE * 2.25 / 3.14;
-                    LINE_SIZE = LINE_SIZE * 1.5 / 3.14;
+                    DOT_SIZE = DOT_SIZE * 2.35 / Math.PI;
+                    LINE_SIZE = LINE_SIZE * 1.6 / Math.PI;
                 }
 
                 let max_lat = 0;
