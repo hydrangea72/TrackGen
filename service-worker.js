@@ -4,6 +4,8 @@ const cacheName = `${appPrefix}-${appVersion}`;
 const foldersToCache = ['media', 'js', 'css'];
 const additionalCache = ['/', 'manifest.json', 'index.html'];
 
+let filesToCache;
+
 async function generateFilesToCache() {
     const filesToCache = [];
 
@@ -47,6 +49,16 @@ async function cacheFirstWithRefresh(request) {
         throw error;
     }
 }
+
+self.addEventListener("install", (event) => {
+    event.waitUntil(
+        generateFilesToCache().then((files) => {
+            return caches.open(cacheName).then((cache) => {
+                return cache.addAll(files);
+            });
+        })
+    );
+});
 
 self.addEventListener("fetch", async (event) => {
     if (isCachable(event.request)) {
