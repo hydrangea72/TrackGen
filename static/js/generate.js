@@ -21,42 +21,60 @@ const BLUE_MARBLE = new Image();
 BLUE_MARBLE.crossOrigin = "anonymous";
 const loader = document.querySelector("#map-indicator .loader");
 const buttons = document.querySelectorAll(".generate");
-
-// Event listener for map selector
 const mapSelector = document.getElementById('map-selector');
-mapSelector.addEventListener('change', async () => {
-    const size = document.querySelector('.generate').dataset.size;
-    const MAP_URL = getMapUrl(size);
-    BLUE_MARBLE.src = MAP_URL;
-});
 
-// Add event listener to buttons
+// Preloads the map images
+// psst: we don't preload the huge map because it's
+// over 100MB and github pages doesn't like that
+const mapUrls = {
+    "xlarge": null, // "https://cdn.trackgen.codingcactus.codes/map.jpg",
+    "large-nxtgen": "static/media/bg21600-nxtgen.jpg",
+    "large": "static/media/bg12000.jpg",
+    "blkmar": "static/media/bg13500-blkmar.jpg",
+    "normal": "static/media/bg8192.png",
+};
+
+for (const key in mapUrls) {
+    if (mapUrls[key] !== null) {
+        const img = new Image();
+        img.src = mapUrls[key];
+    }
+}
+
+// Event listener for map selector and buttons
+mapSelector.addEventListener('change', handleMapChange);
+
 buttons.forEach(button => {
     button.addEventListener("click", () => {
-        const size = button.dataset.size;
-        const MAP_URL = getMapUrl(size);
-
-        BLUE_MARBLE.src = MAP_URL;
-        BLUE_MARBLE.onload = () => {
-            loaded = true;
-            loader.style.display = "none";
-            document.querySelector("#map-indicator ion-icon").style.color = "#70c542";
-        }
-        BLUE_MARBLE.onerror = (err) => { console.error(err); }
+        handleButtonClick(button.dataset.size);
     });
 });
 
-function getMapUrl() {
+function handleMapChange() {
+    const size = document.querySelector('.generate').dataset.size;
+    BLUE_MARBLE.src = getMapUrl(size);
+}
+
+function handleButtonClick(size) {
+    BLUE_MARBLE.src = getMapUrl(size);
+    BLUE_MARBLE.onload = () => {
+        loaded = true;
+        loader.style.display = "none";
+        document.querySelector("#map-indicator ion-icon").style.color = "#70c542";
+    };
+    BLUE_MARBLE.onerror = (err) => { console.error(err); };
+}
+
+function getMapUrl(size) {
     const { selectedIndex, options } = mapSelector;
     const mapType = options[selectedIndex].value;
-    const mapUrls = {
-        "xlarge": "https://cdn.trackgen.codingcactus.codes/map.jpg",
-        "large-nxtgen": "static/media/bg21600-nxtgen.jpg",
-        "large": "static/media/bg12000.jpg",
-        "blkmar": "static/media/bg13500-blkmar.jpg",
-        "normal": "static/media/bg8192.png",
-    };
-    return mapUrls[mapType];
+
+    // If the selected map is the huge one, fetch its URL now
+    if (mapType === 'xlarge') {
+        return "https://cdn.trackgen.codingcactus.codes/map.jpg";
+    } else {
+        return mapUrls[mapType];
+    }
 }
 
 function createMap(data, accessible) {
