@@ -1,27 +1,26 @@
 const appPrefix = 'TrackGen';
 const appVersion = 'v1.0.5';
 const cacheName = `${appPrefix}-${appVersion}`;
-const filesToCache = [
-    '/',
-    'manifest.json',
-    'index.html',
-    'static/media/favicon.png',
-    'static/media/cyclone.png',
-    'static/media/background.png',
-    'static/media/bg8192.png',
-    'static/media/bg12000.jpg',
-    'static/js/sw.js',
-    'static/js/rsmc.js',
-    'static/js/new_point.js',
-    'static/js/hurdat.js',
-    'static/js/pages.js',
-    'static/js/ibtracs.js',
-    'static/js/manual_input.js',
-    'static/js/generate.js',
-    'static/js/atcf.js',
-    'static/js/file_upload.js',
-    'static/css/style.css'
-];
+const foldersToCache = ['media', 'js', 'css'];
+const additionalCache = ['/', 'manifest.json', 'index.html'];
+
+async function generateFilesToCache() {
+    const filesToCache = [];
+
+    for (const folder of foldersToCache) {
+        const folderFiles = await fetch(`/${folder}/`).then(response => response.text());
+        const regex = /href="([^"]+\.(png|jpg|jpeg|jxl|webp|js|css))"/g;
+        let match;
+
+        while ((match = regex.exec(folderFiles)) !== null) {
+            filesToCache.push(`/${folder}/${match[1]}`);
+        }
+    }
+
+    filesToCache.push(...additionalCache);
+
+    return filesToCache;
+}
 
 function isCachable(request) {
     const url = new URL(request.url);
