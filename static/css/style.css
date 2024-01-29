@@ -489,10 +489,6 @@ ion-icon+span {
 		grid-template-rows: 5fr 1fr;
 	}
 
-	#gens {
-		gap: inherit !important;
-		grid-template-columns: repeat(1, 1fr) !important;
-	}
 }
 
 #gens button {
@@ -509,7 +505,7 @@ ion-icon+span {
 
 #options-container * {
 	vertical-align: baseline;
-	margin: .2em .4em .6em auto;
+	margin: .2em .4em .3em auto;
 }
 
 #options-container label {
@@ -524,6 +520,4 @@ ion-icon+span {
 
 #gens {
 	display: grid;
-	grid-template-columns: repeat(2, 1fr);
-	gap: 1vw;
 }
