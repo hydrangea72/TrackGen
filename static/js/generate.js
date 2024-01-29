@@ -24,10 +24,8 @@ const buttons = document.querySelectorAll(".generate");
 const mapSelector = document.getElementById('map-selector');
 
 // Preloads the map images
-// psst: we don't preload the huge map because it's
-// over 100MB and github pages doesn't like that
 const mapUrls = {
-    "xlarge": null, // "https://cdn.trackgen.codingcactus.codes/map.jpg",
+    "xlarge": "static/media/bg16200.jxl",
     "large-nxtgen": "static/media/bg21600-nxtgen.jpg",
     "large": "static/media/bg12000.jpg",
     "blkmar": "static/media/bg13500-blkmar.jpg",
@@ -69,12 +67,7 @@ function getMapUrl(size) {
     const { selectedIndex, options } = mapSelector;
     const mapType = options[selectedIndex].value;
 
-    // If the selected map is the huge one, fetch its URL now
-    if (mapType === 'xlarge') {
-        return "https://cdn.trackgen.codingcactus.codes/map.jpg";
-    } else {
-        return mapUrls[mapType];
-    }
+    return mapUrls[mapType] || mapUrls[size];
 }
 
 function createMap(data, accessible) {
