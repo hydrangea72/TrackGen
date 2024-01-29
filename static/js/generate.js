@@ -25,7 +25,7 @@ const mapSelector = document.getElementById('map-selector');
 
 // Preloads the map images
 const mapUrls = {
-    "xlarge": "static/media/bg16200.jxl",
+    "xlarge": "static/media/bg16383.webp",
     "large-nxtgen": "static/media/bg21600-nxtgen.jpg",
     "large": "static/media/bg12000.jpg",
     "blkmar": "static/media/bg13500-blkmar.jpg",
