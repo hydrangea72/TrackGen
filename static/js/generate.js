@@ -84,9 +84,10 @@ function createMap(data, accessible) {
 
                 let DOT_SIZE = 0.29890625 / 360 * FULL_WIDTH;
                 let LINE_SIZE = 0.09 / 360 * FULL_WIDTH;
+                
                 if (document.getElementById("smaller-dots").checked) {
-                    DOT_SIZE = DOT_SIZE * 2.35 / Math.PI;
-                    LINE_SIZE = LINE_SIZE * 1.6 / Math.PI;
+                    DOT_SIZE *= 2.35 / Math.PI;
+                    LINE_SIZE *= 1.6 / Math.PI;
                 }
 
                 let max_lat = 0;
@@ -167,8 +168,8 @@ function createMap(data, accessible) {
 
                 const named_tracks = {};
                 data.forEach(point => {
-                    point.latitude = point.latitude - top;
-                    point.longitude = point.longitude - left;
+                    point.latitude -= top;
+                    point.longitude -= left;
 
                     if (point.name in named_tracks) {
                         named_tracks[point.name].push(point);
