@@ -7,13 +7,21 @@
 	<title>TrackGen</title>
 	<meta name="author" content="Coding-Cactus, StrawberryMaster">
 	<meta name="description" content="Generate track maps from tropical cyclone data">
-	<meta name="keywords" content="tropical cyclone, track map, hurricane, typhoon, cyclone">
+	<meta name="keywords"
+		content="trackgen, track generator, tropical cyclone, track map, hurricane, typhoon, cyclone, storm, weather, meteorology, data visualization, open source">
 	<meta name="theme-color" content="#fbaf00">
+	<meta name="title" content="TrackGen">
 
 	<meta property="og:title" content="TrackGen">
 	<meta property="og:type" content="website">
-	<meta property="og:image" content="static/media/cyclone.png">
+	<meta property="og:image" content="https://strawberrymaster.github.io/TrackGen/static/media/cyclone.png">
 	<meta property="og:url" content="https://strawberrymaster.github.io/TrackGen/">
+	<meta property="og:description" content="Generate track maps from tropical cyclone data.">
+
+	<meta name="twitter:card" content="summary_large_image">
+	<meta name="twitter:title" content="TrackGen">
+	<meta name="twitter:description" content="Generate track maps from tropical cyclone data.">
+	<meta name="twitter:image" content="https://strawberrymaster.github.io/TrackGen/static/media/cyclone.png">
 
 	<link href="static/css/style.css" rel="stylesheet" type="text/css" />
 	<link href="static/media/favicon.png" rel="icon" />
@@ -22,6 +30,17 @@
 </head>
 
 <body>
+
+	<div id="map-indicator">
+		<ion-icon name="map-outline"></ion-icon>
+
+		<div class="loader" style="display: none;">
+			<svg class="circular-loader" viewBox="25 25 50 50">
+				<circle class="loader-path" cx="50" cy="50" r="20" fill="none" stroke="#fff" stroke-width="5" />
+			</svg>
+		</div>
+	</div>
+
 	<main>
 		<h1>TrackGen</h1>
 		<div id="input-type">
@@ -51,8 +70,8 @@
 						<div>
 							<label>
 								<span>Latitude: </span>
-								<input type="number" step="any" class="latitude" min="0" max="90" aria-label="Latitude" name="latitude"
-									required>
+								<input type="number" step="any" class="latitude" min="0" max="90" aria-label="Latitude"
+									name="latitude" required>
 							</label>
 							<select class="latitude" name="latitude-format">
 								<option value="°N">°N</option>
@@ -75,7 +94,8 @@
 						<div>
 							<label>
 								<span>Wind Speed: </span>
-								<input type="number" step="any" min="0" class="speed" aria-label="Wind Speed" name="speed">
+								<input type="number" step="any" min="0" class="speed" aria-label="Wind Speed"
+									name="speed">
 							</label>
 							<select class="speed" name="speed-format">
 								<option value="kph">kph</option>
@@ -108,19 +128,37 @@
 						Point</span></button>
 
 				<div id="gens">
-					<button class="generate" type="submit" data-size="normal">
+					<button class="generate" type="submit">
 						<ion-icon name="analytics-outline" aria-hidden="true"></ion-icon>
-						<span>Generate Map - normal</span>
-					</button>
-					<button class="generate" type="submit" data-size="large">
-						<ion-icon name="analytics-outline" aria-hidden="true"></ion-icon>
-						<span>Generate Map - large</span>
+						<span>Generate Map</span>
 					</button>
 				</div>
 
 			</form>
-			<div id="accessible-container">
-				<input type="checkbox" id="accessible"><label for="accessible">Use accessible colours</label>
+			<div id="options-container">
+				<input type="checkbox" id="accessible" /><label for="accessible"
+					title="Uses the new, accessible Wikipedia color scheme.">Use accessible colours</label><br />
+				<input type="checkbox" id="smaller-dots" /><label for="smaller-dots"
+					title="[EXPERIMENTAL] Uses smaller dot sizes on the generated maps. Intended for summary maps only.">Use
+					smaller dot sizes (summary maps
+					only)</label><br />
+				<label for="map-selector"
+					title="Select map type (default is normal). Large and extra large maps are slower to generate.">
+					<ion-icon name="information-circle-outline" aria-hidden="true"
+						style="margin: .2rem 0; vertical-align: text-bottom"></ion-icon>
+					Select map type (experimental):</label>
+				<select id="map-selector">
+					<option value="normal" title="The original Blue Marble (2002) map.">Normal</option>
+					<option value="large-nxtgen"
+						title="Large map with the Blue Marble: Next Generation (July 2005) map.">Large
+						(Next Gen)</option>
+					<option value="large" title="A larger version of the Blue Marble (2002) map.">Large</option>
+					<option value="blkmar" title="A night light map, Black Marble (2016).">Larger (Black
+						Marble)</option>
+					<option value="xlarge"
+						title="A very large version of the Blue Marble (2002) map. Not recommended unless you're only a really fast connection.">
+						Extra large (slow)</option>
+				</select>
 			</div>
 		</div>
 
@@ -175,8 +213,19 @@
 
 	<script src="static/js/manual_input.js"></script>
 
-	<script type="module" src="https://unpkg.com/ionicons@7.1.2/dist/ionicons/ionicons.esm.js"></script>
-	<script nomodule src="https://unpkg.com/ionicons@7.1.2/dist/ionicons/ionicons.js"></script>
+	<script type="module" src="https://unpkg.com/ionicons@latest/dist/ionicons/ionicons.esm.js"></script>
+	<script nomodule="" src="https://unpkg.com/ionicons@latest/dist/ionicons/ionicons.js"></script>
+	<noscript>
+		<style>
+			#map-indicator {
+				display: none;
+			}
+		</style>
+		<div id="no-js">
+			<h1>TrackGen</h1>
+			<p>TrackGen requires JavaScript to run. Please enable JavaScript and refresh the page.</p>
+		</div>
+	</noscript>
 </body>
 
 </html>

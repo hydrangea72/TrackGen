@@ -1,12 +1,12 @@
 function catToColour(cat = -999, accessible = true) {
     const colorMap = new Map([
         [-999, "#C0C0C0"],
-        [-2, accessible ? "#6EC1EA" : "#5EBAFF"],
-        [-1, accessible ? "#4DFFFF" : "#00FAF4"],
-        [1, accessible ? "#FFFFD9" : "#FFFFCC"],
-        [2, accessible ? "#FFD98C" : "#FFE775"],
-        [3, accessible ? "#FF9E59" : "#FFC140"],
-        [4, accessible ? "#FF738A" : "#FF8F20"],
+        [-2, accessible ? "#6ec1ea" : "#5EBAFF"],
+        [-1, accessible ? "#4dffff" : "#00FAF4"],
+        [1, accessible ? "#ffffD9" : "#FFFFCC"],
+        [2, accessible ? "#ffd98c" : "#FFE775"],
+        [3, accessible ? "#ff9e59" : "#FFC140"],
+        [4, accessible ? "#ff738a" : "#FF8F20"],
         [5, accessible ? "#a188fc" : "#FF6060"],
     ]);
     return colorMap.get(cat) || "#C0C0C0";
@@ -18,22 +18,57 @@ document.querySelector("#close").addEventListener("click", () => {
 
 let loaded = false;
 const BLUE_MARBLE = new Image();
-
+BLUE_MARBLE.crossOrigin = "anonymous";
+const loader = document.querySelector("#map-indicator .loader");
 const buttons = document.querySelectorAll(".generate");
+const mapSelector = document.getElementById('map-selector');
+
+// Preloads the map images
+const mapUrls = {
+    "xlarge": "static/media/bg16383.webp",
+    "large-nxtgen": "static/media/bg21600-nxtgen.jpg",
+    "large": "static/media/bg12000.jpg",
+    "blkmar": "static/media/bg13500-blkmar.jpg",
+    "normal": "static/media/bg8192.png",
+};
+
+for (const key in mapUrls) {
+    if (mapUrls[key] !== null) {
+        const img = new Image();
+        img.src = mapUrls[key];
+    }
+}
+
+// Event listener for map selector and buttons
+mapSelector.addEventListener('change', handleMapChange);
+
 buttons.forEach(button => {
     button.addEventListener("click", () => {
-        const size = button.dataset.size;
-        const MAP_URL = size === "large"
-            ? "static/media/bg12000.jpg"
-            : size === "normal"
-                ? "static/media/bg8192.png"
-                : "static/media/bg8192.png";
-
-        BLUE_MARBLE.src = MAP_URL;
-        BLUE_MARBLE.onload = () => { loaded = true };
-        BLUE_MARBLE.onerror = (err) => { console.error(err); }
+        handleButtonClick(button.dataset.size);
     });
 });
+
+function handleMapChange() {
+    const size = document.querySelector('.generate').dataset.size;
+    BLUE_MARBLE.src = getMapUrl(size);
+}
+
+function handleButtonClick(size) {
+    BLUE_MARBLE.src = getMapUrl(size);
+    BLUE_MARBLE.onload = () => {
+        loaded = true;
+        loader.style.display = "none";
+        document.querySelector("#map-indicator ion-icon").style.color = "#70c542";
+    };
+    BLUE_MARBLE.onerror = (err) => { console.error(err); };
+}
+
+function getMapUrl(size) {
+    const { selectedIndex, options } = mapSelector;
+    const mapType = options[selectedIndex].value;
+
+    return mapUrls[mapType] || mapUrls[size];
+}
 
 function createMap(data, accessible) {
     document.querySelector("#close").classList.add("hidden");
@@ -47,8 +82,13 @@ function createMap(data, accessible) {
                 const FULL_WIDTH = BLUE_MARBLE.width;
                 const FULL_HEIGHT = BLUE_MARBLE.height;
 
-                const DOT_SIZE = 0.29890625 / 360 * FULL_WIDTH;
-                const LINE_SIZE = 0.09 / 360 * FULL_WIDTH;
+                let DOT_SIZE = 0.29890625 / 360 * FULL_WIDTH;
+                let LINE_SIZE = 0.09 / 360 * FULL_WIDTH;
+                
+                if (document.getElementById("smaller-dots").checked) {
+                    DOT_SIZE *= 2.35 / Math.PI;
+                    LINE_SIZE *= 1.6 / Math.PI;
+                }
 
                 let max_lat = 0;
                 let max_long = 0;
@@ -128,8 +168,8 @@ function createMap(data, accessible) {
 
                 const named_tracks = {};
                 data.forEach(point => {
-                    point.latitude = point.latitude - top;
-                    point.longitude = point.longitude - left;
+                    point.latitude -= top;
+                    point.longitude -= left;
 
                     if (point.name in named_tracks) {
                         named_tracks[point.name].push(point);

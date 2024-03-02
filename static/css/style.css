@@ -1,9 +1,10 @@
-@import url('https://fonts.googleapis.com/css2?family=Raleway&family=Roboto+Mono&family=Varela+Round&display=swap');
-
+@import url('https://fonts.googleapis.com/css2?family=Roboto+Mono&family=Varela+Round&display=swap');
+@import url('https://code.cdn.mozilla.net/fonts/fira.css');
 
 :root {
 	--background-1: #7EA16B;
 	--background-2: #FBAF00;
+	--background-3: #00511C;
 	--foreground-1: #FFD639;
 	--foreground-2: #007CBE;
 	--highlight: #FFA3AF;
@@ -29,13 +30,38 @@ html {
 
 ion-icon {
 	transform: scale(1.25) translateY(-1%);
-	vertical-align: bottom;
+	vertical-align: text-bottom;
 }
 
 h1 {
 	font-size: 5vh;
 	text-align: center;
 	color: var(--foreground-1);
+}
+
+#map-indicator {
+	position: fixed;
+	top: 20px;
+	left: 20px;
+	display: flex;
+	gap: 10px;
+}
+
+#map-indicator ion-icon {
+	color: #fff;
+	font-size: 20px;
+}
+
+#map-indicator .loader {
+	height: 20px;
+	width: 20px;
+	animation: spin 1s linear infinite;
+	transform-origin: center center;
+}
+
+#map-indicator .loader-path {
+	stroke-dasharray: 105, 100;
+	stroke-linecap: round;
 }
 
 main {
@@ -116,6 +142,7 @@ main {
 
 #headers h3 {
 	text-align: center;
+	font-family: "Fira Sans", sans-serif;
 	font-size: 3vh;
 	color: #fff;
 }
@@ -169,7 +196,7 @@ textarea:focus {
 	font-size: 1.5vw;
 	line-height: 1.5vw;
 	border: none;
-	border-radius: .5rem;
+	border-radius: .25rem;
 	padding: 5px 10px;
 	vertical-align: middle;
 	color: #c00;
@@ -186,7 +213,7 @@ textarea:focus {
 select,
 button,
 #file-upload label {
-	font-family: 'Raleway', sans-serif;
+	font-family: 'Fira Sans', sans-serif;
 }
 
 #inputs label+select {
@@ -227,7 +254,7 @@ ion-icon+span {
 	text-align: center;
 	border: none;
 	border-radius: .5rem;
-	color: var(--foreground-1);
+	color: var(--background-3);
 	background-color: #fff;
 	transition: all 0.3s;
 }
@@ -262,11 +289,11 @@ ion-icon+span {
 #file-format {
 	outline: none;
 	border: none;
-	font-size: 2vh;
+	font-size: .8em;
 	border-radius: 0.5vh;
-	padding: 0.5vh 1vh;
+	padding: .25em;
+	vertical-align: middle;
 }
-
 
 #page2-content form {
 	height: 100%;
@@ -290,7 +317,7 @@ ion-icon+span {
 }
 
 #paste-upload textarea {
-	border-radius: 20px;
+	border-radius: .5rem;
 	resize: none;
 	padding: 1.5vh;
 	font-size: 16px;
@@ -462,10 +489,6 @@ ion-icon+span {
 		grid-template-rows: 5fr 1fr;
 	}
 
-	#gens {
-		gap: inherit !important;
-		grid-template-columns: repeat(1, 1fr) !important;
-	}
 }
 
 #gens button {
@@ -473,19 +496,28 @@ ion-icon+span {
 	padding: 1.75vh 0;
 }
 
-#accessible-container {
+#options-container {
 	color: var(--foreground-1);
 	font-size: 20px;
 	margin: .5rem auto;
+	white-space: normal;
 }
 
-#accessible-container * {
+#options-container * {
 	vertical-align: baseline;
-	margin: .2rem;
+	margin: .2em .4em .3em auto;
+}
+
+#options-container label {
+	cursor: help;
+}
+
+#map-selector {
+	font-weight: 300;
+	font-style: italic;
+	padding: .2rem;
 }
 
 #gens {
 	display: grid;
-	grid-template-columns: repeat(2, 1fr);
-	gap: 1vw;
 }
