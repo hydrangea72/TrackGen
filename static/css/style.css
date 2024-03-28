@@ -523,7 +523,7 @@ ion-icon+span {
 }
 
 @media (prefers-color-scheme: dark) {
-	html {
+	body {
 		background-image: url("../media/background-dark.png");
 	}
 }
