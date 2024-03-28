@@ -521,3 +521,9 @@ ion-icon+span {
 #gens {
 	display: grid;
 }
+
+@media (prefers-color-scheme: dark) {
+	html {
+		background-image: url("../media/background-dark.png");
+	}
+}
