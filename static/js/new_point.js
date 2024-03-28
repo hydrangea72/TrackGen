@@ -78,22 +78,30 @@ function loadPointsFromCache() {
 	const points = JSON.parse(localStorage.getItem("points"));
 
 	if (points) {
-		points.forEach(point => {
-			const newPoint = document.querySelector("#new-point");
-			newPoint.click();
+		const inputsContainer = document.querySelector("#inputs");
+		const newInputs = document.querySelectorAll(".point");
 
-			const newInputs = document.querySelectorAll(".point");
-			const lastInputs = newInputs[newInputs.length - 1];
+		points.forEach(point => {
+			let lastInputs = newInputs[newInputs.length - 1].cloneNode(true);
+
+			const elements = Array.from(lastInputs.querySelectorAll("input, select"));
 
 			point.inputs.forEach((value, index) => {
-				lastInputs.querySelectorAll("input")[index].value = value;
+				elements[index].value = value;
 			});
 
 			point.selects.forEach((value, index) => {
-				const select = lastInputs.querySelectorAll("select")[index];
+				const select = elements[point.inputs.length + index];
 				select.value = value;
 				handle_select(select);
 			});
+
+			handle_removal(lastInputs.querySelector(".remove"));
+
+			inputsContainer.appendChild(lastInputs);
+			lastInputs.scrollIntoView();
 		});
+
+		savePointsToCache();
 	}
 }
