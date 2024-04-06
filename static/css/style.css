@@ -515,7 +515,7 @@ ion-icon+span {
 #map-selector {
 	font-weight: 300;
 	font-style: italic;
-	padding: .2rem;
+	padding: .2rem 0 .2rem .4rem;
 }
 
 #gens {
