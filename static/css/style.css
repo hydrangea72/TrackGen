@@ -291,7 +291,7 @@ ion-icon+span {
 	border: none;
 	font-size: .8em;
 	border-radius: 0.5vh;
-	padding: .25em;
+	padding: .1rem .25rem;
 	vertical-align: middle;
 }
 
