@@ -32,12 +32,10 @@ const mapUrls = {
     "normal": "static/media/bg8192.png",
 };
 
-for (const key in mapUrls) {
-    if (mapUrls[key] !== null) {
-        const img = new Image();
-        img.src = mapUrls[key];
-    }
-}
+Object.values(mapUrls).forEach(url => {
+    const img = new Image();
+    img.src = url;
+});
 
 // Event listener for map selector and buttons
 mapSelector.addEventListener('change', handleMapChange);
