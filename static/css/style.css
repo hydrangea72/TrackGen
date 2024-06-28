@@ -535,10 +535,7 @@ ion-icon+span {
 
 	#inputs .point {
 		background-color: #555555b2;
-	}
-
-	#inputs .point {
-		background-color: #555555b2;
+		color: #fff;
 	}
 
 	#new-point,
