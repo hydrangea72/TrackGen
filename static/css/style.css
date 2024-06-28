@@ -526,4 +526,24 @@ ion-icon+span {
 	body {
 		background-image: url("../media/background-dark.png");
 	}
+
+	input,
+	textarea {
+		background: rgb(175, 175, 175);
+		color: #000;
+	}
+
+	#inputs .point {
+		background-color: #555555b2;
+	}
+
+	#inputs .point {
+		background-color: #555555b2;
+	}
+
+	#new-point,
+	.generate {
+		background-color: #808080;
+		color: #fff;
+	}
 }
