@@ -10,19 +10,27 @@ async function generateFilesToCache() {
     const filesToCache = [];
 
     for (const folder of foldersToCache) {
-        const folderFiles = await fetch(`/${folder}/`).then(response => response.text());
-        const regex = /href="([^"]+\.(png|jpg|jpeg|jxl|webp|js|css))"/g;
-        let match;
-
-        while ((match = regex.exec(folderFiles)) !== null) {
-            if (match[1] !== 'bg19440.avif') {
-                filesToCache.push(`/${folder}/${match[1]}`);
+        try {
+            const response = await fetch(`/${folder}/`);
+            if (!response.ok) {
+                console.error(`Failed to fetch ${folder} folder: ${response.statusText}`);
+                continue;
             }
+            const folderFiles = await response.text();
+            const regex = /href="([^"]+\.(png|jpg|jpeg|jxl|webp|js|css))"/g;
+            let match;
+
+            while ((match = regex.exec(folderFiles)) !== null) {
+                if (match[1] !== 'bg19440.avif') {
+                    filesToCache.push(`/${folder}/${match[1]}`);
+                }
+            }
+        } catch (error) {
+            console.error(`Error fetching files from ${folder}:`, error);
         }
     }
 
     filesToCache.push(...additionalCache);
-
     return filesToCache;
 }
 
@@ -52,12 +60,14 @@ async function cacheFirstWithRefresh(request) {
     }
 }
 
-self.addEventListener("install", (event) => {
+self.addEventListener('install', event => {
     event.waitUntil(
-        generateFilesToCache().then((files) => {
-            return caches.open(cacheName).then((cache) => {
+        generateFilesToCache().then(files => {
+            return caches.open(cacheName).then(cache => {
                 return cache.addAll(files);
             });
+        }).catch(error => {
+            console.error('Failed to generate files to cache:', error);
         })
     );
 });
