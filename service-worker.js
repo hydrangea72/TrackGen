@@ -1,5 +1,5 @@
 const appPrefix = 'TrackGen';
-const appVersion = 'v1.0.5';
+const appVersion = 'v1.0.6';
 const cacheName = `${appPrefix}-${appVersion}`;
 const foldersToCache = ['media', 'js', 'css'];
 const additionalCache = ['/', 'manifest.json', 'index.html'];
@@ -15,7 +15,7 @@ async function generateFilesToCache() {
         let match;
 
         while ((match = regex.exec(folderFiles)) !== null) {
-            if (match[1] !== 'bg16383.webp') {
+            if (match[1] !== 'bg19440.avif') {
                 filesToCache.push(`/${folder}/${match[1]}`);
             }
         }
