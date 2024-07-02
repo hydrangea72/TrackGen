@@ -21,7 +21,7 @@ async function generateFilesToCache() {
             let match;
 
             while ((match = regex.exec(folderFiles)) !== null) {
-                if (match[1] !== 'bg19440.avif') {
+                if (match[1] !== 'bg16383.webp') {
                     filesToCache.push(`/${folder}/${match[1]}`);
                 }
             }
