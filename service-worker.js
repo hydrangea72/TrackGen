@@ -1,13 +1,13 @@
 const appPrefix = 'TrackGen';
-const appVersion = 'v1.0.6';
+const appVersion = 'v1.0.7';
 const cacheName = `${appPrefix}-${appVersion}`;
 const foldersToCache = ['media', 'js', 'css'];
 const additionalCache = ['/', 'manifest.json', 'index.html'];
 
-let filesToCache;
+let filesToCache = [];
 
 async function generateFilesToCache() {
-    const filesToCache = [];
+    filesToCache = [];
 
     for (const folder of foldersToCache) {
         try {
@@ -36,12 +36,12 @@ async function generateFilesToCache() {
 
 function isCachable(request) {
     const url = new URL(request.url);
-    return url.origin === location.origin && filesToCache.includes(url.pathname);
+    return filesToCache && url.origin === location.origin && filesToCache.includes(url.pathname);
 }
 
 async function cacheFirstWithRefresh(request) {
     try {
-        const fetchResponsePromise = fetch(request).then(async (networkResponse) => {
+        const fetchResponsePromise = fetch(request).then(async networkResponse => {
             if (networkResponse.ok) {
                 const cache = await caches.open(cacheName);
                 cache.put(request, networkResponse.clone());
@@ -73,8 +73,25 @@ self.addEventListener('install', event => {
 });
 
 self.addEventListener("fetch", async (event) => {
-    if (isCachable(event.request)) {
-        event.respondWith(await cacheFirstWithRefresh(event.request));
-        console.log(`Serving ${event.request.url} from cache.`);
+    const request = event.request;
+
+    if (isCachable(request)) {
+        event.respondWith(cacheFirstWithRefresh(request));
+    } else {
+        event.respondWith(fetch(request));
     }
+});
+
+self.addEventListener('activate', event => {
+    event.waitUntil(
+        caches.keys().then(cacheNames => {
+            return Promise.all(
+                cacheNames.filter(cacheName => {
+                    return cacheName.startsWith(appPrefix) && cacheName !== cacheName;
+                }).map(cacheName => {
+                    return caches.delete(cacheName);
+                })
+            );
+        })
+    );
 });
