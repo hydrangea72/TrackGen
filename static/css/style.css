@@ -504,7 +504,7 @@ ion-icon+span {
 }
 
 #options-container * {
-	vertical-align: baseline;
+	vertical-align: middle;
 	margin: 1.25dvh 1.5dvh 1dvh auto;
 }
 
