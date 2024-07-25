@@ -22,7 +22,6 @@ function handle_removal(button) {
 		} else {
 			point.remove();
 		}
-		savePointsToCache();
 	});
 }
 document.querySelectorAll("#inputs .remove").forEach(button => { handle_removal(button) })
