@@ -1,7 +1,3 @@
-window.addEventListener("load", () => {
-	loadPointsFromCache();
-});
-
 function handle_select(select) {
 	select.setAttribute("data-selected", select.value);
 	select.addEventListener("change", () => {
@@ -60,48 +56,4 @@ document.querySelector("#new-point").addEventListener("click", () => {
 
 	inputs.appendChild(new_inputs);
 	new_inputs.scrollIntoView();
-
-	savePointsToCache();
 });
-
-function savePointsToCache() {
-	const points = Array.from(document.querySelectorAll(".point")).map(point => {
-		const inputs = Array.from(point.querySelectorAll("input")).map(input => input.value);
-		const selects = Array.from(point.querySelectorAll("select")).map(select => select.value);
-		return { inputs, selects };
-	});
-
-	localStorage.setItem("points", JSON.stringify(points));
-}
-
-function loadPointsFromCache() {
-	const points = JSON.parse(localStorage.getItem("points"));
-
-	if (points) {
-		const inputsContainer = document.querySelector("#inputs");
-		const newInputs = document.querySelectorAll(".point");
-
-		points.forEach(point => {
-			let lastInputs = newInputs[newInputs.length - 1].cloneNode(true);
-
-			const elements = Array.from(lastInputs.querySelectorAll("input, select"));
-
-			point.inputs.forEach((value, index) => {
-				elements[index].value = value;
-			});
-
-			point.selects.forEach((value, index) => {
-				const select = elements[point.inputs.length + index];
-				select.value = value;
-				handle_select(select);
-			});
-
-			handle_removal(lastInputs.querySelector(".remove"));
-
-			inputsContainer.appendChild(lastInputs);
-			lastInputs.scrollIntoView();
-		});
-
-		savePointsToCache();
-	}
-}
