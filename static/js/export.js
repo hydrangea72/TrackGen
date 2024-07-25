@@ -52,7 +52,7 @@ function downloadTrackData() {
     console.log(`Storm data downloaded!`);
 }
 
-document.querySelector("#download-data").addEventListener("click", downloadTrackData);
+document.querySelector("#export-data").addEventListener("click", downloadTrackData);
 
 // Imports the storm data
 function importData() {
