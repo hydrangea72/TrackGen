@@ -114,6 +114,7 @@ function importPoints(data) {
                 option.selected = true;
             }
         });
+        stageSelect.setAttribute("data-selected", stage);
 
         handle_removal(pointElement.querySelector(".remove"));
     }
