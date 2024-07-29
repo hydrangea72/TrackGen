@@ -75,19 +75,6 @@ function importData() {
 
 document.querySelector("#import-data").addEventListener("click", importData);
 
-// Helper functions
-function handle_removal(button) {
-    button.addEventListener("click", () => {
-        button.parentElement.remove();
-    });
-}
-
-function handle_select(select) {
-    select.addEventListener("change", () => {
-        select.setAttribute("data-selected", select.value);
-    });
-}
-
 // We now import the data
 function importPoints(data) {
     const inputs = document.querySelector("#inputs");
@@ -99,7 +86,6 @@ function importPoints(data) {
         const latitude = pointData.latitude;
         pointElement.querySelector("input.latitude").value = latitude.slice(0, -1);
         pointElement.querySelector("select.latitude").setAttribute("data-selected", latitude.slice(-1));
-        handle_select(pointElement.querySelector("select.latitude"));
         if (latitude.slice(-1) === "S") {
             pointElement.querySelector("select.latitude").selectedIndex = 1;
         }
@@ -107,7 +93,6 @@ function importPoints(data) {
         const longitude = pointData.longitude;
         pointElement.querySelector("input.longitude").value = longitude.slice(0, -1);
         pointElement.querySelector("select.longitude").setAttribute("data-selected", longitude.slice(-1));
-        handle_select(pointElement.querySelector("select.longitude"));
         if (longitude.slice(-1) === "W") {
             pointElement.querySelector("select.longitude").selectedIndex = 1;
         }
@@ -121,7 +106,6 @@ function importPoints(data) {
         }
         pointElement.querySelector("input.speed").value = speed;
         pointElement.querySelector("select.speed").setAttribute("data-selected", unit);
-        handle_select(pointElement.querySelector("select.speed"));
 
         const stage = pointData.stage;
         const stageSelect = pointElement.querySelector(".stage");
@@ -130,7 +114,6 @@ function importPoints(data) {
                 option.selected = true;
             }
         });
-        handle_select(stageSelect);
 
         handle_removal(pointElement.querySelector(".remove"));
     }
