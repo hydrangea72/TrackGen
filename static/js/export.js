@@ -75,73 +75,72 @@ function importData() {
 
 document.querySelector("#import-data").addEventListener("click", importData);
 
+// Helper functions
+function handle_removal(button) {
+    button.addEventListener("click", () => {
+        button.parentElement.remove();
+    });
+}
+
+function handle_select(select) {
+    select.addEventListener("change", () => {
+        select.setAttribute("data-selected", select.value);
+    });
+}
+
 // We now import the data
 function importPoints(data) {
     const inputs = document.querySelector("#inputs");
     let new_inputs = document.querySelector(".point");
 
-    new_inputs.querySelector(".name").value = data[0].name;
+    function populatePoint(pointData, pointElement) {
+        pointElement.querySelector(".name").value = pointData.name;
 
-    const latitude = data[0].latitude;
-    new_inputs.querySelector("input.latitude").value = latitude.slice(0, -1);
-    new_inputs.querySelector("select.latitude").setAttribute("data-selected", latitude.slice(-1));
-    handle_select(new_inputs.querySelector("select.latitude"));
+        const latitude = pointData.latitude;
+        pointElement.querySelector("input.latitude").value = latitude.slice(0, -1);
+        pointElement.querySelector("select.latitude").setAttribute("data-selected", latitude.slice(-1));
+        handle_select(pointElement.querySelector("select.latitude"));
+        if (latitude.slice(-1) === "S") {
+            pointElement.querySelector("select.latitude").selectedIndex = 1;
+        }
 
-    const longitude = data[0].longitude;
-    new_inputs.querySelector("input.longitude").value = longitude.slice(0, -1);
-    new_inputs.querySelector("select.longitude").setAttribute("data-selected", longitude.slice(-1));
-    handle_select(new_inputs.querySelector("select.longitude"));
+        const longitude = pointData.longitude;
+        pointElement.querySelector("input.longitude").value = longitude.slice(0, -1);
+        pointElement.querySelector("select.longitude").setAttribute("data-selected", longitude.slice(-1));
+        handle_select(pointElement.querySelector("select.longitude"));
+        if (longitude.slice(-1) === "W") {
+            pointElement.querySelector("select.longitude").selectedIndex = 1;
+        }
 
-    let speed = data[0].speed;
-    const unit = document.querySelector("select.speed").getAttribute("data-selected");
-    if (unit === "mph") {
-        speed *= 1.151;
-    } else if (unit === "kph") {
-        speed *= 1.852;
-    }
-    new_inputs.querySelector("input.speed").value = speed;
-    new_inputs.querySelector("select.speed").setAttribute("data-selected", unit);
-    handle_select(new_inputs.querySelector("select.speed"));
-
-    const stage = data[0].stage;
-    new_inputs.querySelector(".stage").setAttribute("data-selected", stage);
-    handle_select(new_inputs.querySelector(".stage"));
-
-    handle_removal(new_inputs.querySelector(".remove"));
-
-    for (let i = 1; i < data.length; i++) {
-        new_inputs = new_inputs.cloneNode(true);
-
-        new_inputs.querySelector(".name").value = data[i].name;
-
-        const latitude = data[i].latitude;
-        new_inputs.querySelector("input.latitude").value = latitude.slice(0, -1);
-        new_inputs.querySelector("select.latitude").setAttribute("data-selected", latitude.slice(-1));
-        handle_select(new_inputs.querySelector("select.latitude"));
-
-        const longitude = data[i].longitude;
-        new_inputs.querySelector("input.longitude").value = longitude.slice(0, -1);
-        new_inputs.querySelector("select.longitude").setAttribute("data-selected", longitude.slice(-1));
-        handle_select(new_inputs.querySelector("select.longitude"));
-
-        let speed = data[i].speed;
-        const unit = document.querySelector("select.speed").getAttribute("data-selected");
+        let speed = pointData.speed;
+        const unit = pointElement.querySelector("select.speed").getAttribute("data-selected");
         if (unit === "mph") {
             speed *= 1.151;
         } else if (unit === "kph") {
             speed *= 1.852;
         }
-        new_inputs.querySelector("input.speed").value = speed;
-        new_inputs.querySelector("select.speed").setAttribute("data-selected", unit);
-        handle_select(new_inputs.querySelector("select.speed"));
+        pointElement.querySelector("input.speed").value = speed;
+        pointElement.querySelector("select.speed").setAttribute("data-selected", unit);
+        handle_select(pointElement.querySelector("select.speed"));
 
-        const stage = data[i].stage;
-        new_inputs.querySelector(".stage").setAttribute("data-selected", stage);
-        handle_select(new_inputs.querySelector(".stage"));
+        const stage = pointData.stage;
+        const stageSelect = pointElement.querySelector(".stage");
+        Array.from(stageSelect.options).forEach(option => {
+            if (option.value === stage) {
+                option.selected = true;
+            }
+        });
+        handle_select(stageSelect);
 
-        handle_removal(new_inputs.querySelector(".remove"));
+        handle_removal(pointElement.querySelector(".remove"));
+    }
 
-        inputs.appendChild(new_inputs);
-        new_inputs.scrollIntoView();
+    populatePoint(data[0], new_inputs);
+
+    for (let i = 1; i < data.length; i++) {
+        const cloned_inputs = new_inputs.cloneNode(true);
+        populatePoint(data[i], cloned_inputs);
+        inputs.appendChild(cloned_inputs);
+        cloned_inputs.scrollIntoView();
     }
 }
