@@ -16,13 +16,24 @@ function mapFromFile(data, type, accessible) {
 	createMap(parsed, accessible);
 }
 
-document.querySelector("#paste-upload").addEventListener("submit", (e) => {
+document.querySelector("#paste-upload").addEventListener("submit", async (e) => {
 	e.preventDefault();
 
 	const accessible = document.querySelector("#accessible").checked;
 
-	const data = document.querySelector("#paste-upload textarea").value;
+	let data = document.querySelector("#paste-upload textarea").value;
 	const type = document.querySelector("#file-format").getAttribute("data-selected").toLowerCase();
+
+	// for URLs and pastebin-like services
+	if (data.startsWith('https://')) {
+		const response = await fetch(data);
+		if (response.ok) {
+			data = await response.text();
+		} else {
+			console.error('Unable to fetch data from URL:', response.status);
+			return;
+		}
+	}
 
 	mapFromFile(data, type, accessible);
 });

@@ -1,7 +1,3 @@
-window.addEventListener("load", () => {
-	loadPointsFromCache();
-});
-
 function handle_select(select) {
 	select.setAttribute("data-selected", select.value);
 	select.addEventListener("change", () => {
@@ -26,7 +22,6 @@ function handle_removal(button) {
 		} else {
 			point.remove();
 		}
-		savePointsToCache();
 	});
 }
 document.querySelectorAll("#inputs .remove").forEach(button => { handle_removal(button) })
@@ -60,40 +55,4 @@ document.querySelector("#new-point").addEventListener("click", () => {
 
 	inputs.appendChild(new_inputs);
 	new_inputs.scrollIntoView();
-
-	savePointsToCache();
 });
-
-function savePointsToCache() {
-	const points = Array.from(document.querySelectorAll(".point")).map(point => {
-		const inputs = Array.from(point.querySelectorAll("input")).map(input => input.value);
-		const selects = Array.from(point.querySelectorAll("select")).map(select => select.value);
-		return { inputs, selects };
-	});
-
-	localStorage.setItem("points", JSON.stringify(points));
-}
-
-function loadPointsFromCache() {
-	const points = JSON.parse(localStorage.getItem("points"));
-
-	if (points) {
-		points.forEach(point => {
-			const newPoint = document.querySelector("#new-point");
-			newPoint.click();
-
-			const newInputs = document.querySelectorAll(".point");
-			const lastInputs = newInputs[newInputs.length - 1];
-
-			point.inputs.forEach((value, index) => {
-				lastInputs.querySelectorAll("input")[index].value = value;
-			});
-
-			point.selects.forEach((value, index) => {
-				const select = lastInputs.querySelectorAll("select")[index];
-				select.value = value;
-				handle_select(select);
-			});
-		});
-	}
-}
